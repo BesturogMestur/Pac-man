@@ -56,9 +56,9 @@ public class Draugar extends Circle {
         double att = p.getStefna();
         if (att == 0) {
             stefna[1] += 4;
-        } else if (att == 4) {
+        } else if (att == 1) {
             stefna[0] += 4;
-        } else if (att == 4) {
+        } else if (att == 2) {
             stefna[1] -= 4;
         } else {
             stefna[0] -= 4;
