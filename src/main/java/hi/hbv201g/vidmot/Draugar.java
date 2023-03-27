@@ -1,18 +1,18 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinnsla.Hreifigeta;
+import hi.hbv201g.vinnsla.Hreyfigeta;
 import javafx.scene.shape.Circle;
 
 public class Draugar extends Circle {
-    private int daugir;
+    private int draugar;
 
     public boolean elta;
     private boolean hraedir = false;
-    private Hreifigeta hreing;
+    private Hreyfigeta hreyfing;
 
 
-    public Draugar(int daugir, boolean elta) {
-        this.daugir = daugir;
+    public Draugar(int draugar, boolean elta) {
+        this.draugar = draugar;
         this.elta = elta;
     }
 
@@ -25,45 +25,45 @@ public class Draugar extends Circle {
     }
 
     private double inky(Pacman p) {
-        return hreing.reknirit(getHint(), p.getHint());
+        return hreyfing.reknirit(getHint(), p.getHint());
     }
 
     private double blinky(Pacman p, Draugar inky) {
-        double[] stfna = p.getHint();
+        double[] stefna = p.getHint();
         double att = p.getStefna();
         if (att == 0) {
-            stfna[1] += 2;
+            stefna[1] += 2;
         } else if (att == 1) {
-            stfna[0] += 2;
+            stefna[0] += 2;
         } else if (att == 2) {
-            stfna[1] -= 2;
+            stefna[1] -= 2;
         } else {
-            stfna[0] -= 2;
+            stefna[0] -= 2;
         }
         double[] d = inky.getHint();
-        double[] missmunnur = new double[2];
-        for (int i = 0; i < missmunnur.length; i++) {
-            missmunnur[i] = stfna[i] - d[i];
+        double[] mismunnur = new double[2];
+        for (int i = 0; i < mismunnur.length; i++) {
+            mismunnur[i] = stefna[i] - d[i];
         }
-        for (int i = 0; i < stfna.length; i++) {
-            stfna[i] -= missmunnur[i];
+        for (int i = 0; i < stefna.length; i++) {
+            stefna[i] -= mismunnur[i];
         }
-        return hreing.reknirit(getHint(), p.getHint());
+        return hreyfing.reknirit(getHint(), p.getHint());
     }
 
     private double pinky(Pacman p) {
-        double[] stfna = p.getHint();
+        double[] stefna = p.getHint();
         double att = p.getStefna();
         if (att == 0) {
-            stfna[1] += 4;
+            stefna[1] += 4;
         } else if (att == 4) {
-            stfna[0] += 4;
+            stefna[0] += 4;
         } else if (att == 4) {
-            stfna[1] -= 4;
+            stefna[1] -= 4;
         } else {
-            stfna[0] -= 4;
+            stefna[0] -= 4;
         }
-        return hreing.reknirit(getHint(), p.getHint());
+        return hreyfing.reknirit(getHint(), p.getHint());
     }
 
     private double clyde(Pacman p) {
@@ -76,7 +76,7 @@ public class Draugar extends Circle {
         if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) == 8) {
             return 0; //munn gera flýja sena
         }
-        return hreing.reknirit(getHint(), p.getHint());
+        return hreyfing.reknirit(getHint(), p.getHint());
     }
 
     public double[] getHint() {
