@@ -1,6 +1,6 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinsla.Stefna;
+import hi.hbv201g.vinnsla.Stefna;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
