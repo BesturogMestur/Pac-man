@@ -1,6 +1,6 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinnsla.Hreifigeta;
+import hi.hbv201g.vinnsla.Hreyfigeta;
 import javafx.scene.shape.Circle;
 
 public class Draugar extends Circle {
@@ -8,7 +8,7 @@ public class Draugar extends Circle {
 
     public boolean elta;
     private boolean hraedir = false;
-    private Hreifigeta hreing;
+    private Hreyfigeta hreing;
 
 
     public Draugar(int daugir, boolean elta) {
