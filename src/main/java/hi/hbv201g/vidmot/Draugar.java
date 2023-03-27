@@ -1,9 +1,9 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinsla.Hreifigeta;
+import hi.hbv201g.vinnsla.Hreifigeta;
 import javafx.scene.shape.Circle;
 
-public class Duagar extends Circle {
+public class Draugar extends Circle {
     private int daugir;
 
     public boolean elta;
@@ -11,7 +11,7 @@ public class Duagar extends Circle {
     private Hreifigeta hreing;
 
 
-    public Duagar(int daugir, boolean elta) {
+    public Draugar(int daugir, boolean elta) {
         this.daugir = daugir;
         this.elta = elta;
     }
@@ -28,7 +28,7 @@ public class Duagar extends Circle {
         return hreing.reknirit(getHint(), p.getHint());
     }
 
-    private double blinky(Pacman p, Duagar inky) {
+    private double blinky(Pacman p, Draugar inky) {
         double[] stfna = p.getHint();
         double att = p.getStefna();
         if (att == 0) {

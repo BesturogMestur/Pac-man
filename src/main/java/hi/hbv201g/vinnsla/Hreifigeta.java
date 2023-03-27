@@ -1,4 +1,4 @@
-package hi.hbv201g.vinsla;
+package hi.hbv201g.vinnsla;
 
 public class Hreifigeta {
 
