@@ -11,10 +11,7 @@ import java.util.HashMap;
 public class PacmanController {
     @FXML
     private Label welcomeText;
-
-
     private HashMap<KeyCode, Stefna> map = new HashMap<KeyCode, Stefna>();
-
     public void orvatakkar(){
         map.put(KeyCode.RIGHT, Stefna.HAEGRI);
         map.put(KeyCode.LEFT, Stefna.VINSTRI);
@@ -22,8 +19,6 @@ public class PacmanController {
         map.put(KeyCode.DOWN, Stefna.NIDUR);
     }
     public void initialize(){
-
-
 
     }
 }
