@@ -95,13 +95,13 @@ private Draugar inky;
     }
 
     @Override
-    public void afarm(Draugar inky) {
+    public void afarm() {
         if(hraedir){
             Random random = new Random(4);
         }
         if(draugar==1){
             for(int i = 0; i < 4;i++){
-                if((this.getRotate()+180)%360!=90+(90*i)){
+                if((this.getRotate()+180)%360!=(90+(90*i))%360){
 
                 }
             }
