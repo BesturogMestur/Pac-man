@@ -3,17 +3,20 @@ package hi.hbv201g.vidmot;
 import hi.hbv201g.vinnsla.Hreyfigeta;
 import javafx.scene.shape.Circle;
 
-public class Draugar extends Circle {
-    private int draugar;
+import java.util.Random;
 
+public class Draugar extends Circle implements Afarm {
+    private int draugar;
+private Pacman p;
     public boolean elta;
     private boolean hraedir = false;
     private Hreyfigeta hreyfing;
 
 
-    public Draugar(int draugar, boolean elta) {
+    public Draugar(int draugar, boolean elta, Pacman p) {
         this.draugar = draugar;
         this.elta = elta;
+        this.p = p;
     }
 
     public void setHredir(boolean hraedir) {
@@ -24,13 +27,13 @@ public class Draugar extends Circle {
         this.elta = elta;
     }
 
-    private double inky(Pacman p) {
+    private double inky() {
         return hreyfing.reknirit(getHint(), p.getHint());
     }
 
-    private double blinky(Pacman p, Draugar inky) {
+    private double blinky(Draugar inky) {
         double[] stefna = p.getHint();
-        double att = p.getStefna();
+        double att = p.getStefna()/90;
         if (att == 0) {
             stefna[1] += 2;
         } else if (att == 1) {
@@ -51,7 +54,7 @@ public class Draugar extends Circle {
         return hreyfing.reknirit(getHint(), p.getHint());
     }
 
-    private double pinky(Pacman p) {
+    private double pinky() {
         double[] stefna = p.getHint();
         double att = p.getStefna();
         if (att == 0) {
@@ -66,7 +69,7 @@ public class Draugar extends Circle {
         return hreyfing.reknirit(getHint(), p.getHint());
     }
 
-    private double clyde(Pacman p) {
+    private double clyde() {
         double[] a = getHint();
         double[] stefna = p.getHint();
         double[] radius = new double[2];
@@ -86,5 +89,17 @@ public class Draugar extends Circle {
         return getHint();
     }
 
+    @Override
+    public void afarm(Draugar inky) {
+        if(hraedir){
+            Random random = new Random(4);
+        }
+        if(draugar==1){
+            for(int i = 0; i < 4;i++){
+                if((this.getRotate()+180)%360!=90+(90*i)){
 
+                }
+            }
+        }
+    }
 }

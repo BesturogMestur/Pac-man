@@ -12,6 +12,6 @@ public class Pacman extends Arc {
     }
 
     public double getStefna(){
-        return 0;
+        return getRotate();
     }
 }
