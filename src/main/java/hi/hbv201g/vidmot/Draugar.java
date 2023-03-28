@@ -8,6 +8,7 @@ import java.util.Random;
 public class Draugar extends Circle implements Afarm {
     private int draugar;
 private Pacman p;
+private Draugar inky;
     public boolean elta;
     private boolean hraedir = false;
     private Hreyfigeta hreyfing;
@@ -17,6 +18,10 @@ private Pacman p;
         this.draugar = draugar;
         this.elta = elta;
         this.p = p;
+    }
+
+    public void setInky(Draugar inky) {
+        this.inky = inky;
     }
 
     public void setHredir(boolean hraedir) {
@@ -31,7 +36,7 @@ private Pacman p;
         return hreyfing.reknirit(getHint(), p.getHint());
     }
 
-    private double blinky(Draugar inky) {
+    private double blinky() {
         double[] stefna = p.getHint();
         double att = p.getStefna()/90;
         if (att == 0) {
