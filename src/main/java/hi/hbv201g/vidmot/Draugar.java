@@ -17,13 +17,15 @@ public class Draugar extends Circle implements Afarm {
     private Hreyfigeta hreyfing;
     private Random random;
     private double maxLEND;
+    private final double[] HOME;
 
 
-    public Draugar(int draugar, boolean elta, Pacman p, double[] a, double[] b) {
+    public Draugar(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
         this.draugar = draugar;
         this.elta = elta;
         this.p = p;
         maxLEND = hreyfing.reknirit(a, b);
+        HOME = home;
     }
 
     public void setBlinky(Draugar blinky) {
@@ -51,58 +53,78 @@ public class Draugar extends Circle implements Afarm {
         return (getRotate() + 180) % 360;
     }
 
+    private double home(double[] a) {
+        return hreyfing.reknirit(a, HOME);
+    }
+
     public double blinky(double[] a) {
-        return (hreyfing.reknirit(a, p.getHint()));
+        if (!elta) {
+            return hreyfing.reknirit(a, p.getHint());
+        } else {
+            return home(a);
+        }
     }
 
     private double inky(double[] a) {
-        double[] stefna = p.getHint();
-        double att = p.getStefna() / 90;
-        if (att == Stefna.UPP.getGradur()) {
-            stefna[1] += 2;
-        } else if (att == Stefna.VINSTRI.getGradur()) {
-            stefna[0] -= 2;
-        } else if (att == Stefna.NIDUR.getGradur()) {
-            stefna[1] -= 2;
-        } else {
-            stefna[0] += 2;
+        if (!etan) {
+            double[] stefna = p.getHint();
+            double att = p.getStefna() / 90;
+            if (att == Stefna.UPP.getGradur()) {
+                stefna[1] += 2;
+            } else if (att == Stefna.VINSTRI.getGradur()) {
+                stefna[0] -= 2;
+            } else if (att == Stefna.NIDUR.getGradur()) {
+                stefna[1] -= 2;
+            } else {
+                stefna[0] += 2;
+            }
+            double[] d = blinky.getHint();
+            double[] mismunnur = new double[2];
+            for (int i = 0; i < mismunnur.length; i++) {
+                mismunnur[i] = stefna[i] - d[i];
+            }
+            for (int i = 0; i < stefna.length; i++) {
+                stefna[i] -= mismunnur[i];
+            }
+            return hreyfing.reknirit(a, stefna);
+        }else{
+            return home(a);
         }
-        double[] d = blinky.getHint();
-        double[] mismunnur = new double[2];
-        for (int i = 0; i < mismunnur.length; i++) {
-            mismunnur[i] = stefna[i] - d[i];
-        }
-        for (int i = 0; i < stefna.length; i++) {
-            stefna[i] -= mismunnur[i];
-        }
-        return hreyfing.reknirit(a, stefna);
     }
 
-    private double pinky(double[] a) {
-        double[] stefna = p.getHint();
-        double att = p.getStefna();
-        if (att == Stefna.UPP.getGradur()) {
-            stefna[1] += 4;
-        } else if (att == Stefna.VINSTRI.getGradur()) {
-            stefna[0] -= 4;
-        } else if (att == Stefna.NIDUR.getGradur()) {
-            stefna[1] -= 4;
-        } else {
-            stefna[0] += 4;
+    private double pinky(double[] a){
+        if(!etan) {
+            double[] stefna = p.getHint();
+            double att = p.getStefna();
+            if (att == Stefna.UPP.getGradur()) {
+                stefna[1] += 4;
+            } else if (att == Stefna.VINSTRI.getGradur()) {
+                stefna[0] -= 4;
+            } else if (att == Stefna.NIDUR.getGradur()) {
+                stefna[1] -= 4;
+            } else {
+                stefna[0] += 4;
+            }
+            return hreyfing.reknirit(a, p.getHint());
+        }else {
+            return home(a);
         }
-        return hreyfing.reknirit(a, p.getHint());
     }
 
     private double clyde(double[] a) {
-        double[] stefna = p.getHint();
-        double[] radius = new double[2];
-        for (int i = 0; i < radius.length; i++) {
-            radius[i] = stefna[i] - a[i];
+        if (!etan) {
+            double[] stefna = p.getHint();
+            double[] radius = new double[2];
+            for (int i = 0; i < radius.length; i++) {
+                radius[i] = stefna[i] - a[i];
+            }
+            if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
+                return 0; //munn gera flýja sena
+            }
+            return hreyfing.reknirit(a, p.getHint());
+        }else {
+            return home(a);
         }
-        if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
-            return 0; //munn gera flýja sena
-        }
-        return hreyfing.reknirit(a, p.getHint());
     }
 
     public double[] getHint() {
@@ -129,7 +151,7 @@ public class Draugar extends Circle implements Afarm {
         return 0;
     }
 
-    private void direson(){
+    private void direson() {
         setCenterX(getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET);
         setCenterY(getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET);
     }
