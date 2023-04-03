@@ -1,12 +1,11 @@
 package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vinnsla.Hreyfigeta;
-import hi.hbv201g.vinnsla.Stefna;
 import javafx.scene.shape.Circle;
 
 import java.util.Random;
 
-public class Draugar extends Circle implements Afarm {
+public class Draugar extends Circle implements Afarm, Hnit {
     private int draugar;
     private Pacman p;
     private Draugar blinky;
@@ -17,6 +16,7 @@ public class Draugar extends Circle implements Afarm {
     private Hreyfigeta hreyfing;
     private Random random;
     private double maxLEND;
+    private double[] homeBase;
     private final double[] HOME;
 
 
@@ -31,6 +31,21 @@ public class Draugar extends Circle implements Afarm {
     public void setBlinky(Draugar blinky) {
         this.blinky = blinky;
     }
+    public Draugar getBlinky(){
+        return blinky;
+    }
+
+    public Pacman getP() {
+        return p;
+    }
+
+    public Hreyfigeta getHreyfing() {
+        return hreyfing;
+    }
+
+    public void setHomeBase(double[] homeBase) {
+        this.homeBase = homeBase;
+    }
 
     public void setHredir(boolean hraedir) {
         setRotate(turnAround());
@@ -41,6 +56,9 @@ public class Draugar extends Circle implements Afarm {
         setRotate(turnAround());
         this.elta = elta;
     }
+    public boolean getElta(){
+        return elta;
+    }
 
     public void setEtan(boolean etan) {
         if (hraedir) {
@@ -49,106 +67,31 @@ public class Draugar extends Circle implements Afarm {
         this.etan = etan;
     }
 
+    public boolean getEtan(){
+        return etan;
+    }
+
     private double turnAround() {
         return (getRotate() + 180) % 360;
     }
 
-    private double home(double[] a) {
+    public double ToPac(double[] a) {
+        return hreyfing.reknirit(a, p.Hnit());
+    }
+
+    public double ToHomeBaes(double[] a) {
+        return hreyfing.reknirit(a, homeBase);
+    }
+
+    public double home(double[] a) {
         return hreyfing.reknirit(a, HOME);
     }
 
-    public double blinky(double[] a) {
-        if (!elta) {
-            return hreyfing.reknirit(a, p.getHint());
-        } else {
-            return home(a);
-        }
-    }
-
-    private double inky(double[] a) {
-        if (!etan) {
-            double[] stefna = p.getHint();
-            double att = p.getStefna() / 90;
-            if (att == Stefna.UPP.getGradur()) {
-                stefna[1] += 2;
-            } else if (att == Stefna.VINSTRI.getGradur()) {
-                stefna[0] -= 2;
-            } else if (att == Stefna.NIDUR.getGradur()) {
-                stefna[1] -= 2;
-            } else {
-                stefna[0] += 2;
-            }
-            double[] d = blinky.getHint();
-            double[] mismunnur = new double[2];
-            for (int i = 0; i < mismunnur.length; i++) {
-                mismunnur[i] = stefna[i] - d[i];
-            }
-            for (int i = 0; i < stefna.length; i++) {
-                stefna[i] -= mismunnur[i];
-            }
-            return hreyfing.reknirit(a, stefna);
-        }else{
-            return home(a);
-        }
-    }
-
-    private double pinky(double[] a){
-        if(!etan) {
-            double[] stefna = p.getHint();
-            double att = p.getStefna();
-            if (att == Stefna.UPP.getGradur()) {
-                stefna[1] += 4;
-            } else if (att == Stefna.VINSTRI.getGradur()) {
-                stefna[0] -= 4;
-            } else if (att == Stefna.NIDUR.getGradur()) {
-                stefna[1] -= 4;
-            } else {
-                stefna[0] += 4;
-            }
-            return hreyfing.reknirit(a, p.getHint());
-        }else {
-            return home(a);
-        }
-    }
-
-    private double clyde(double[] a) {
-        if (!etan) {
-            double[] stefna = p.getHint();
-            double[] radius = new double[2];
-            for (int i = 0; i < radius.length; i++) {
-                radius[i] = stefna[i] - a[i];
-            }
-            if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
-                return 0; //munn gera flýja sena
-            }
-            return hreyfing.reknirit(a, p.getHint());
-        }else {
-            return home(a);
-        }
-    }
-
-    public double[] getHint() {
+    public double[] Hnit() {
         double[] a = new double[2];
         a[0] = getCenterX();
         a[1] = getCenterY();
-        return getHint();
-    }
-
-    private double lend(int a, double[] b) {
-        switch (a) {
-            case 0:
-                return blinky(b);
-
-            case 1:
-                return inky(b);
-
-            case 2:
-                return pinky(b);
-
-            case 3:
-                return clyde(b);
-        }
-        return 0;
+        return a;
     }
 
     private void direson() {
@@ -157,7 +100,7 @@ public class Draugar extends Circle implements Afarm {
     }
 
     @Override
-    public void afarm() {
+    public void afarm(boolean[] path) {
         double bakvid = turnAround();
         double minLend = maxLEND;
         double lend = minLend;
@@ -166,16 +109,22 @@ public class Draugar extends Circle implements Afarm {
             setRotate(random.nextInt(4));
             while (bakvid == getRotate()) {
                 setRotate(random.nextInt(4));
+                for(int i=0; i< path.length;i++){
+                    if(getRotate()==(90+(90*i))%360&&!path[i]){
+                        setRotate(bakvid);
+                        break;
+                    }
+                }
             }
             direson();
         } else {
             for (int i = 0; i < 4; i++) {
                 double att = (90 + (90 * i)) % 360;
 
-                if (bakvid != att) {
-                    double[] maeliStadur = getHint();
+                if (bakvid != att && path[i]) {
+                    double[] maeliStadur = Hnit();
                     maeliStadur = hreyfing.piontOfColuslson(maeliStadur, i);
-                    lend = lend(draugar, maeliStadur);
+                    lend = hreyfing.lend(draugar, maeliStadur);
 
                     if (lend < minLend) {
                         minLend = lend;

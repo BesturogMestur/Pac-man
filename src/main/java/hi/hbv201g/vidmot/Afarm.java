@@ -1,5 +1,5 @@
 package hi.hbv201g.vidmot;
 
 public interface Afarm {
-    void afarm();
+    void afarm(boolean[] path);
 }
