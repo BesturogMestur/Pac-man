@@ -11,7 +11,7 @@ public class Inky extends Draugar {
     public double inky(double[] a) {
         if (!getEtan()) {
             if (getElta()) {
-                double[] stefna = getP().getHint();
+                double[] stefna = getP().Hnit();
                 double att = getP().getStefna() / 90;
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 2;
@@ -22,7 +22,7 @@ public class Inky extends Draugar {
                 } else {
                     stefna[0] += 2;
                 }
-                double[] d = getBlinky().getHint();
+                double[] d = getBlinky().Hnit();
                 double[] mismunnur = new double[2];
                 for (int i = 0; i < mismunnur.length; i++) {
                     mismunnur[i] = stefna[i] - d[i];

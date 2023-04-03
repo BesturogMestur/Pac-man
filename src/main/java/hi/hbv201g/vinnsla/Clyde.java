@@ -11,7 +11,7 @@ public class Clyde extends Draugar {
     public double clyde(double[] a) {
         if (!getEtan()) {
             if (getElta()) {
-                double[] stefna = getP().getHint();
+                double[] stefna = getP().Hnit();
                 double[] radius = new double[2];
                 for (int i = 0; i < radius.length; i++) {
                     radius[i] = stefna[i] - a[i];

@@ -11,7 +11,7 @@ public class Pinky extends Draugar {
     public double pinky(double[] a) {
         if (!getEtan()) {
             if (getElta()) {
-                double[] stefna = getP().getHint();
+                double[] stefna = getP().Hnit();
                 double att = getP().getStefna();
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 4;

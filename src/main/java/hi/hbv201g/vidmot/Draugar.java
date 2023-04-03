@@ -5,7 +5,7 @@ import javafx.scene.shape.Circle;
 
 import java.util.Random;
 
-public class Draugar extends Circle implements Afarm {
+public class Draugar extends Circle implements Afarm, Hnit {
     private int draugar;
     private Pacman p;
     private Draugar blinky;
@@ -76,7 +76,7 @@ public class Draugar extends Circle implements Afarm {
     }
 
     public double ToPac(double[] a) {
-        return hreyfing.reknirit(a, p.getHint());
+        return hreyfing.reknirit(a, p.Hnit());
     }
 
     public double ToHomeBaes(double[] a) {
@@ -87,11 +87,11 @@ public class Draugar extends Circle implements Afarm {
         return hreyfing.reknirit(a, HOME);
     }
 
-    public double[] getHint() {
+    public double[] Hnit() {
         double[] a = new double[2];
         a[0] = getCenterX();
         a[1] = getCenterY();
-        return getHint();
+        return a;
     }
 
     private void direson() {
@@ -122,7 +122,7 @@ public class Draugar extends Circle implements Afarm {
                 double att = (90 + (90 * i)) % 360;
 
                 if (bakvid != att && path[i]) {
-                    double[] maeliStadur = getHint();
+                    double[] maeliStadur = Hnit();
                     maeliStadur = hreyfing.piontOfColuslson(maeliStadur, i);
                     lend = hreyfing.lend(draugar, maeliStadur);
 

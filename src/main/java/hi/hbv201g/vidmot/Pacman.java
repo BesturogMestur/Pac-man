@@ -2,14 +2,14 @@ package hi.hbv201g.vidmot;
 
 import javafx.scene.shape.Arc;
 
-public class Pacman extends Arc implements Afarm {
+public class Pacman extends Arc implements Afarm, Hnit {
 private final double OFFSET=1;
 
-    public double[] getHint(){
+    public double[] Hnit(){
         double[]a=new double[2];
         a[0]=getCenterX();
         a[1]= getCenterY();
-        return getHint();
+        return a;
     }
 
     public double getStefna(){
