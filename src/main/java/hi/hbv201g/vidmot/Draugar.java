@@ -1,7 +1,6 @@
 package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vinnsla.Hreyfigeta;
-import hi.hbv201g.vinnsla.Stefna;
 import javafx.scene.shape.Circle;
 
 import java.util.Random;
@@ -101,7 +100,7 @@ public class Draugar extends Circle implements Afarm {
     }
 
     @Override
-    public void afarm() {
+    public void afarm(boolean[] path) {
         double bakvid = turnAround();
         double minLend = maxLEND;
         double lend = minLend;
@@ -110,13 +109,19 @@ public class Draugar extends Circle implements Afarm {
             setRotate(random.nextInt(4));
             while (bakvid == getRotate()) {
                 setRotate(random.nextInt(4));
+                for(int i=0; i< path.length;i++){
+                    if(getRotate()==(90+(90*i))%360&&!path[i]){
+                        setRotate(bakvid);
+                        break;
+                    }
+                }
             }
             direson();
         } else {
             for (int i = 0; i < 4; i++) {
                 double att = (90 + (90 * i)) % 360;
 
-                if (bakvid != att) {
+                if (bakvid != att && path[i]) {
                     double[] maeliStadur = getHint();
                     maeliStadur = hreyfing.piontOfColuslson(maeliStadur, i);
                     lend = hreyfing.lend(draugar, maeliStadur);
