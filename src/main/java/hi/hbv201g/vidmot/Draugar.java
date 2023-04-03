@@ -17,6 +17,7 @@ public class Draugar extends Circle implements Afarm {
     private Hreyfigeta hreyfing;
     private Random random;
     private double maxLEND;
+    private double[] homeBase;
     private final double[] HOME;
 
 
@@ -30,6 +31,14 @@ public class Draugar extends Circle implements Afarm {
 
     public void setBlinky(Draugar blinky) {
         this.blinky = blinky;
+    }
+
+    public Pacman getP() {
+        return p;
+    }
+
+    public void setHomeBase(double[] homeBase) {
+        this.homeBase = homeBase;
     }
 
     public void setHredir(boolean hraedir) {
@@ -53,13 +62,14 @@ public class Draugar extends Circle implements Afarm {
         return (getRotate() + 180) % 360;
     }
 
-    private double home(double[] a) {
-        return hreyfing.reknirit(a, HOME);
-    }
+    private double blinky(double[] a) {
+        if (!etan) {
+            if(elta) {
+                return ToPac(a);
+            }else {
+                return ToHomeBaes(a);
+            }
 
-    public double blinky(double[] a) {
-        if (!elta) {
-            return hreyfing.reknirit(a, p.getHint());
         } else {
             return home(a);
         }
@@ -67,26 +77,31 @@ public class Draugar extends Circle implements Afarm {
 
     private double inky(double[] a) {
         if (!etan) {
-            double[] stefna = p.getHint();
-            double att = p.getStefna() / 90;
-            if (att == Stefna.UPP.getGradur()) {
-                stefna[1] += 2;
-            } else if (att == Stefna.VINSTRI.getGradur()) {
-                stefna[0] -= 2;
-            } else if (att == Stefna.NIDUR.getGradur()) {
-                stefna[1] -= 2;
-            } else {
-                stefna[0] += 2;
+            if(elta) {
+                double[] stefna = p.getHint();
+                double att = p.getStefna() / 90;
+                if (att == Stefna.UPP.getGradur()) {
+                    stefna[1] += 2;
+                } else if (att == Stefna.VINSTRI.getGradur()) {
+                    stefna[0] -= 2;
+                } else if (att == Stefna.NIDUR.getGradur()) {
+                    stefna[1] -= 2;
+                } else {
+                    stefna[0] += 2;
+                }
+                double[] d = blinky.getHint();
+                double[] mismunnur = new double[2];
+                for (int i = 0; i < mismunnur.length; i++) {
+                    mismunnur[i] = stefna[i] - d[i];
+                }
+                for (int i = 0; i < stefna.length; i++) {
+                    stefna[i] -= mismunnur[i];
+                }
+                return hreyfing.reknirit(a, stefna);
+            }else {
+                return ToHomeBaes(a);
             }
-            double[] d = blinky.getHint();
-            double[] mismunnur = new double[2];
-            for (int i = 0; i < mismunnur.length; i++) {
-                mismunnur[i] = stefna[i] - d[i];
-            }
-            for (int i = 0; i < stefna.length; i++) {
-                stefna[i] -= mismunnur[i];
-            }
-            return hreyfing.reknirit(a, stefna);
+
         }else{
             return home(a);
         }
@@ -105,7 +120,7 @@ public class Draugar extends Circle implements Afarm {
             } else {
                 stefna[0] += 4;
             }
-            return hreyfing.reknirit(a, p.getHint());
+            return ToPac(a);
         }else {
             return home(a);
         }
@@ -119,12 +134,24 @@ public class Draugar extends Circle implements Afarm {
                 radius[i] = stefna[i] - a[i];
             }
             if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
-                return 0; //munn gera flýja sena
+                return ToHomeBaes(a);
             }
-            return hreyfing.reknirit(a, p.getHint());
+            return ToPac(a);
         }else {
             return home(a);
         }
+    }
+
+    private double ToPac(double[] a){
+        return hreyfing.reknirit(a, p.getHint());
+    }
+
+    private double ToHomeBaes(double [] a){
+        return hreyfing.reknirit(a,homeBase);
+    }
+
+    private double home(double[] a) {
+        return hreyfing.reknirit(a, HOME);
     }
 
     public double[] getHint() {
