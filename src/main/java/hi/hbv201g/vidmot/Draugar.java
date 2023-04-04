@@ -128,10 +128,11 @@ public class Draugar extends Circle implements Afarm, Hnit {
 
                     if (lend < minLend) {
                         minLend = lend;
-                        direson();
+                        setRotate(att);
                     }
                 }
             }
+            direson();
         }
     }
 }
