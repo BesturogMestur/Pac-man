@@ -8,7 +8,7 @@ public class Pinky extends Draugar {
         super(draugar, elta, p, a, b, home);
     }
 
-    public double pinky(double[] a) {
+    public double drauaReikniritd (double[] a) {
         if (!getEtan()) {
             if (getElta()) {
                 double[] stefna = getP().Hnit();

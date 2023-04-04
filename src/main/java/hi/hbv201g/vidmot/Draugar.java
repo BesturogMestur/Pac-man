@@ -1,11 +1,10 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinnsla.Hreyfigeta;
 import javafx.scene.shape.Circle;
 
 import java.util.Random;
 
-public class Draugar extends Circle implements Afarm, Hnit {
+public abstract class Draugar extends Circle implements Afarm, Hnit {
     private int draugar;
     private Pacman p;
     private Draugar blinky;
@@ -13,18 +12,18 @@ public class Draugar extends Circle implements Afarm, Hnit {
     private boolean elta;
     private boolean hraedir = false;
     private boolean etan = false;
-    private Hreyfigeta hreyfing;
     private Random random;
     private double maxLEND;
     private double[] homeBase;
     private final double[] HOME;
+    public abstract double drauaReikniritd(double[] a);
 
 
     public Draugar(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
         this.draugar = draugar;
         this.elta = elta;
         this.p = p;
-        maxLEND = hreyfing.reknirit(a, b);
+        maxLEND = reknirit(a, b);
         HOME = home;
     }
 
@@ -37,10 +36,6 @@ public class Draugar extends Circle implements Afarm, Hnit {
 
     public Pacman getP() {
         return p;
-    }
-
-    public Hreyfigeta getHreyfing() {
-        return hreyfing;
     }
 
     public void setHomeBase(double[] homeBase) {
@@ -76,21 +71,41 @@ public class Draugar extends Circle implements Afarm, Hnit {
     }
 
     public double ToPac(double[] a) {
-        return hreyfing.reknirit(a, p.Hnit());
+        return reknirit(a, p.Hnit());
     }
 
     public double ToHomeBaes(double[] a) {
-        return hreyfing.reknirit(a, homeBase);
+        return reknirit(a, homeBase);
     }
 
     public double home(double[] a) {
-        return hreyfing.reknirit(a, HOME);
+        return reknirit(a, HOME);
     }
 
     public double[] Hnit() {
         double[] a = new double[2];
         a[0] = getCenterX();
         a[1] = getCenterY();
+        return a;
+    }
+    public int reknirit(double[] d, double[] stefna) {
+        return (int) (Math.pow(d[0] - stefna[0], 2) + Math.pow(d[0] - stefna[0], 2));
+    }
+
+    public double[] piontOfColuslson(double[] a, int i) {
+        if (i % 2 == 0) {
+            if (i == 0) {
+                a[1] += 1;
+            } else {
+                a[1] -= 1;
+            }
+        } else {
+            if (i > 1) {
+                a[0] += 1;
+            } else {
+                a[0] -= 1;
+            }
+        }
         return a;
     }
 
@@ -123,8 +138,8 @@ public class Draugar extends Circle implements Afarm, Hnit {
 
                 if (bakvid != att && path[i]) {
                     double[] maeliStadur = Hnit();
-                    maeliStadur = hreyfing.piontOfColuslson(maeliStadur, i);
-                    lend = hreyfing.lend(draugar, maeliStadur);
+                    maeliStadur = piontOfColuslson(maeliStadur, i);
+                    lend = drauaReikniritd(maeliStadur);
 
                     if (lend < minLend) {
                         minLend = lend;

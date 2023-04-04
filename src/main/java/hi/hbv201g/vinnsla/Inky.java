@@ -8,7 +8,7 @@ public class Inky extends Draugar {
         super(draugar, elta, p, a, b, home);
     }
 
-    public double inky(double[] a) {
+    public double drauaReikniritd(double[] a) {
         if (!getEtan()) {
             if (getElta()) {
                 double[] stefna = getP().Hnit();
@@ -30,7 +30,7 @@ public class Inky extends Draugar {
                 for (int i = 0; i < stefna.length; i++) {
                     stefna[i] -= mismunnur[i];
                 }
-                return getHreyfing().reknirit(a, stefna);
+                return reknirit(a, stefna);
             } else {
                 return ToHomeBaes(a);
             }
