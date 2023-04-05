@@ -1,37 +1,51 @@
 package hi.hbv201g.vidmot;
 
 
+import javafx.application.Application;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-public class PacmanMaze {
+public class PacmanMaze extends Application {
 
-    private ImageView[][] cellViews;
     private Image pacmanRightImage;
     private Image pacmanUpImage;
     private Image pacmanDownImage;
     private Image pacmanLeftImage;
-    private Image blueGhostImage;
     private Image redGhostImage;
-    private Image yellowGhostImage;
     private Image pinkGhostImage;
+    private Image blueGhostImage;
+    private Image yellowGhostImage;
     private Image wallImage;
     private Image bigDotImage;
     private Image smallDotImage;
+    private int width;
+    private int height;
+    private int numCols;
+    private int numRows;
+    private int cellSize;
+    private GridPane gridPane;
 
-    public PacmanMaze() {
-        this.pacmanRightImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanRight.gif"));
-        this.pacmanUpImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanUp.gif"));
-        this.pacmanDownImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanDown.gif"));
-        this.pacmanLeftImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanLeft.gif"));
-        this.redGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/redghost.gif"));
-        this.pinkGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/pink.gif"));
-        this.blueGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/cyan.gif"));
-        this.yellowGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/yellowghost.gif"));
-        this.wallImage = new Image(getClass().getResourceAsStream("/myndiroggif/wall.png"));
-        this.bigDotImage = new Image(getClass().getResourceAsStream("/myndiroggif/energizers.png"));
-        this.smallDotImage = new Image(getClass().getResourceAsStream("/myndiroggif/pallet.png"));
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        // Initialize images
+        pacmanRightImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanRight.gif"));
+        pacmanUpImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanUp.gif"));
+        pacmanDownImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanDown.gif"));
+        pacmanLeftImage = new Image(getClass().getResourceAsStream("/myndiroggif/pacmanLeft.gif"));
+        redGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/redghost.gif"));
+        pinkGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/pink.gif"));
+        blueGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/cyan.gif"));
+        yellowGhostImage = new Image(getClass().getResourceAsStream("/myndiroggif/yellowghost.gif"));
+        wallImage = new Image(getClass().getResourceAsStream("/myndiroggif/wall.png"));
+        bigDotImage = new Image(getClass().getResourceAsStream("/myndiroggif/energizers.png"));
+        smallDotImage = new Image(getClass().getResourceAsStream("/myndiroggif/pallet.png"));
 
     }
-  
 }
+
