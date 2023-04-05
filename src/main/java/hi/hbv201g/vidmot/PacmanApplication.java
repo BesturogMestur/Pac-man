@@ -1,5 +1,6 @@
 package hi.hbv201g.vidmot;
 
+import hi.hbv201g.vinnsla.MusicPlayer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +20,9 @@ public class PacmanApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+        MusicPlayer music = new MusicPlayer("src/sounds/soundtrack.mp3");
+        music.play();
+        music.setVolume(0.5);
     }
 
 

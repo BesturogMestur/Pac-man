@@ -1,6 +1,8 @@
 module hi.hbv201g.vidmot {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
+
 
 
     opens hi.hbv201g.vidmot to javafx.fxml;

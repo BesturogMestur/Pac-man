@@ -7,7 +7,7 @@ public class Blinky extends Draugar {
     public Blinky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
         super(draugar, elta, p, a, b, home);
     }
-    public double blinky(double[] a) {
+    public double drauaReikniritd (double[] a) {
         if (!getEtan()) {
             if (getElta()) {
                 return ToPac(a);
