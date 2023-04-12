@@ -20,6 +20,7 @@ public class PacmanApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
         MusicPlayer music = new MusicPlayer("src/sounds/soundtrack.mp3");
         music.play();
         music.setVolume(0.5);
