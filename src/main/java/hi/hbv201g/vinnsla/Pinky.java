@@ -4,15 +4,17 @@ import hi.hbv201g.vidmot.Draugar;
 import hi.hbv201g.vidmot.Pacman;
 
 public class Pinky extends Draugar {
-    public Pinky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
+    private final double[] HOME_BASE;
+    public Pinky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
         super(draugar, elta, p, a, b, home);
+        HOME_BASE=homeBase;
     }
 
     public double drauaReikniritd (double[] a) {
         if (!getEtan()) {
             if (getElta()) {
-                double[] stefna = getP().Hnit();
-                double att = getP().getStefna();
+                double[] stefna = p.Hnit();
+                double att = p.getStefna();
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 4;
                 } else if (att == Stefna.VINSTRI.getGradur()) {
@@ -24,7 +26,7 @@ public class Pinky extends Draugar {
                 }
                 return ToPac(a);
             } else {
-                return ToHomeBaes(a);
+                return ToHomeBaes(a,HOME_BASE);
             }
 
         } else {

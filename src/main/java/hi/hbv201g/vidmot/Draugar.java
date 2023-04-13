@@ -5,41 +5,23 @@ import javafx.scene.shape.Circle;
 import java.util.Random;
 
 public abstract class Draugar extends Circle implements Afarm, Hnit {
+    protected Pacman p;
+    protected boolean elta;
+    protected boolean etan = false;
     private int draugar;
-    private Pacman p;
-    private Draugar blinky;
     private final int OFFSET = 1;
-    private boolean elta;
     private boolean hraedir = false;
-    private boolean etan = false;
     private Random random;
-    private double maxLEND;
-    private double[] homeBase;
+    private final double MAX_LEND;
     private final double[] HOME;
     public abstract double drauaReikniritd(double[] a);
-
 
     public Draugar(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
         this.draugar = draugar;
         this.elta = elta;
         this.p = p;
-        maxLEND = reknirit(a, b);
+        MAX_LEND = reknirit(a, b);
         HOME = home;
-    }
-
-    public void setBlinky(Draugar blinky) {
-        this.blinky = blinky;
-    }
-    public Draugar getBlinky(){
-        return blinky;
-    }
-
-    public Pacman getP() {
-        return p;
-    }
-
-    public void setHomeBase(double[] homeBase) {
-        this.homeBase = homeBase;
     }
 
     public void setHredir(boolean hraedir) {
@@ -51,19 +33,12 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         setRotate(turnAround());
         this.elta = elta;
     }
-    public boolean getElta(){
-        return elta;
-    }
 
     public void setEtan(boolean etan) {
         if (hraedir) {
             hraedir = false;
         }
         this.etan = etan;
-    }
-
-    public boolean getEtan(){
-        return etan;
     }
 
     private double turnAround() {
@@ -74,7 +49,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return reknirit(a, p.Hnit());
     }
 
-    public double ToHomeBaes(double[] a) {
+    public double ToHomeBaes(double[] a, double[] homeBase) {
         return reknirit(a, homeBase);
     }
 
@@ -117,7 +92,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     @Override
     public void afarm(boolean[] path) {
         double bakvid = turnAround();
-        double minLend = maxLEND;
+        double minLend = MAX_LEND;
         double lend = minLend;
 
         if (hraedir) {
