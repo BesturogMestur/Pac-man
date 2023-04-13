@@ -19,6 +19,9 @@ public class Leikur {
     public IntegerProperty stiginproperty(){
         return stigin;
     }
+    public void leikLokid(){
+        stigin.set(0);
+    }
 
 
 }
