@@ -5,8 +5,8 @@ import hi.hbv201g.vidmot.Pacman;
 
 public class Blinky extends Draugar {
     private final double[] HOME_BASE;
-    public Blinky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
-        super(draugar, elta, p, a, b, home);
+    public Blinky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
+        super(p, a, b, home);
         HOME_BASE=homeBase;
     }
     public double drauaReikniritd (double[] a) {

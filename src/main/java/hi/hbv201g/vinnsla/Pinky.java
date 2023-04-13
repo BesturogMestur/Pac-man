@@ -5,14 +5,14 @@ import hi.hbv201g.vidmot.Pacman;
 
 public class Pinky extends Draugar {
     private final double[] HOME_BASE;
-    public Pinky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
-        super(draugar, elta, p, a, b, home);
+    public Pinky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
+        super(p, a, b, home);
         HOME_BASE=homeBase;
     }
 
     public double drauaReikniritd (double[] a) {
-        if (!getEtan()) {
-            if (getElta()) {
+        if (!etan) {
+            if (elta) {
                 double[] stefna = p.Hnit();
                 double att = p.getStefna();
                 if (att == Stefna.UPP.getGradur()) {
