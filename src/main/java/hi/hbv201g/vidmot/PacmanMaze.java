@@ -1,10 +1,6 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinnsla.Blinky;
-import hi.hbv201g.vinnsla.Clyde;
-import hi.hbv201g.vinnsla.Inky;
-import hi.hbv201g.vinnsla.Pinky;
-import javafx.beans.Observable;
+import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +8,7 @@ import javafx.scene.layout.GridPane;
 
 public class PacmanMaze extends GridPane {
     private final String FILE_NAME = "Leikbord.fxml";
-    private final double[] HOME = {6, 6};
+    private final double[] HOME = {6, 5};
     private final double[] UPPHAFS_PUNKTUR = {0, 0};
     private final double[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
     private final double[] BLINKY_HOME = {getColumnCount(), 0};
@@ -32,7 +28,8 @@ public class PacmanMaze extends GridPane {
             {false, true, false, true, false, false, false, false, false, true, false, true, false},
             {false, true, true, true, true, true, true, true, true, true, true, true, false},
             {false, false, false, false, false, false, false, false, false, false, false, false, false}};
-    private final int[] TIMAR = {10,8,10,2};
+    private final int[] TIMAR = {10, 8, 10, 2};
+    private int havdaTimi = 0;
     private int timi;
     @FXML
     Pacman fxPacman;
@@ -44,7 +41,7 @@ public class PacmanMaze extends GridPane {
 
     public PacmanMaze() {
         FXMLLoder maze = new FXMLLoder(this, FILE_NAME);
-        timi = TIMAR[0];
+        timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
     }
@@ -58,12 +55,12 @@ public class PacmanMaze extends GridPane {
     }
 
     public void setPellets() {
-        for(int i =1; i<MAZE.length-1;i++){
-            for(int j =1; j<MAZE.length-1;j++){
-                if(MAZE[i][j]){
+        for (int i = 1; i < MAZE.length - 1; i++) {
+            for (int j = 1; j < MAZE.length - 1; j++) {
+                if (MAZE[i][j]) {
                     Pellets p = new Pellets();
                     pellets.add(p);
-                    add(p,i,j);
+                    add(p, i, j);
                 }
             }
         }
@@ -74,7 +71,9 @@ public class PacmanMaze extends GridPane {
         aframDurgar(inky);
         aframDurgar(pinky);
         aframDurgar(clyde);
-        if
+        if (timi <= 0) {
+            uppfraeraTima();
+        }
     }
 
     private void aframDurgar(Draugar d) {
@@ -83,34 +82,57 @@ public class PacmanMaze extends GridPane {
         a[0] = getColumnIndex(d);
         a[1] = getRowIndex(d);
 
-        if(timi<=0){
-            if(d.elta){
+        if (timi <= 0) {
+            if (d.elta) {
                 d.setElta(false);
-            }else {
+            } else {
                 d.setElta(true);
             }
         }
-
-        for(int i = 0; i < walls.length;i++){
-            if (i%2==0){
-                if(i==0){
-                    walls[i]=MAZE[a[0]+1][a[1]];
-                }else {
-                    walls[i]=MAZE[a[0]-1][a[1]];
-                }
-
-            }else {
-                if(i==1){
-                    walls[i]=MAZE[a[0]][a[1]+1];
-                }else {
-                    walls[i]=MAZE[a[0]][a[1]-1];
-                }
-                }
-            }
-        d.afarm(walls);
+        if(a[0]==6&&a[1]==5){
+            d.setEtan(false);
+            d.setRotate(Stefna.UPP.getGradur());
         }
 
+        for (int i = 0; i < walls.length; i++) {
+            if (i % 2 == 0) {
+                if (i == 0) {
+                    walls[i] = MAZE[a[0] + 1][a[1]];
+                } else {
+                    walls[i] = MAZE[a[0] - 1][a[1]];
+                }
+
+            } else {
+                if (i == 1) {
+                    walls[i] = MAZE[a[0]][a[1] + 1];
+                } else {
+                    walls[i] = MAZE[a[0]][a[1] - 1];
+                }
+            }
+        }
+        d.afarm(walls);
+        athugaPacman(d);
     }
+
+    private void athugaPacman(Draugar d) {
+        if (d.getBoundsInParent().intersects(fxPacman.getBoundsInParent())){
+            if (!d.hraedir && !d.etan) {
+                //endaleik
+            } else if (d.hraedir) {
+                d.setEtan(true);
+            }
+        }
+    }
+
+    private void uppfraeraTima() {
+        havdaTimi++;
+        if (havdaTimi >= TIMAR.length) {
+            havdaTimi = 0;
+        }
+        timi = TIMAR[havdaTimi];
+    }
+
+}
 
 
 

@@ -8,9 +8,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     protected Pacman p;
     protected boolean elta = false;
     protected boolean etan = false;
-    private int draugar;
+    protected boolean hraedir = false;
     private final int OFFSET = 1;
-    private boolean hraedir = false;
     private Random random;
     private final double MAX_LEND;
     private final double[] HOME;
