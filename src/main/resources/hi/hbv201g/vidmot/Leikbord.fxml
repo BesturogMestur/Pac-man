@@ -601,7 +601,7 @@
                      </children>
                   </GridPane>
       <Label fx:id="fxstig" prefHeight="30.0" prefWidth="151.0" style="-fx-border-color: yellow;" text="Stig: " textFill="#fbff00" />
-      <Button layoutX="509.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
+      <Button layoutX="520.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -610,7 +610,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="550.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
+      <Button layoutX="560.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                <image>

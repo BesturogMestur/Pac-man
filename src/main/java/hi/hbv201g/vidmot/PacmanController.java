@@ -4,11 +4,13 @@ import hi.hbv201g.vinnsla.Leikur;
 import hi.hbv201g.vinnsla.Stefna;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PacmanController {
