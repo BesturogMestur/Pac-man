@@ -58,6 +58,7 @@ public class PacmanController {
     public void nyrLeikur(){
         maze.nyrLeikur();
         timeline.play();
+        maze.pacmanAfram();
     }
     public void showAlertDialog(){
         Alert alert = new AlertDialog("","Pac-man", "Þú hefur verið gómaður, vilt þú byrja nýjan leik?");
