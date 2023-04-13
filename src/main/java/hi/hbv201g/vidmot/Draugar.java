@@ -6,7 +6,7 @@ import java.util.Random;
 
 public abstract class Draugar extends Circle implements Afarm, Hnit {
     protected Pacman p;
-    protected boolean elta;
+    protected boolean elta = false;
     protected boolean etan = false;
     private int draugar;
     private final int OFFSET = 1;
@@ -16,9 +16,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     private final double[] HOME;
     public abstract double drauaReikniritd(double[] a);
 
-    public Draugar(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home) {
-        this.draugar = draugar;
-        this.elta = elta;
+    public Draugar(Pacman p, double[] a, double[] b, double[] home) {
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;

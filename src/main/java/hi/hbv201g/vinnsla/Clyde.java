@@ -5,8 +5,8 @@ import hi.hbv201g.vidmot.Pacman;
 
 public class Clyde extends Draugar {
     private final double[] HOME_BASE;
-    public Clyde(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
-        super(draugar, elta, p, a, b, home);
+    public Clyde(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
+        super(p, a, b, home);
         HOME_BASE=homeBase;
     }
 

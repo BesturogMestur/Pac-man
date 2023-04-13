@@ -7,9 +7,8 @@ public class Inky extends Draugar {
     private final double[] HOME_BASE;
     private Blinky blinky;
 
-    public Inky(int draugar, boolean elta, Pacman p, double[] a, double[] b, double[] home, double[] homeBase
-            , Blinky blinky) {
-        super(draugar, elta, p, a, b, home);
+    public Inky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase, Blinky blinky) {
+        super(p, a, b, home);
         this.blinky = blinky;
         HOME_BASE = homeBase;
 
