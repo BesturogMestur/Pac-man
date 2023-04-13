@@ -23,6 +23,7 @@ public class PacmanApplication extends Application {
         MusicPlayer music = new MusicPlayer("src/sounds/soundtrack.mp3");
         music.play();
         music.setVolume(0.5);
+        pc.byrjaLeik();
     }
 
 

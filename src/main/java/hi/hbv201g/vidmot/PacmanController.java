@@ -6,12 +6,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class PacmanController {
     @FXML
@@ -37,14 +40,31 @@ public class PacmanController {
                 e -> {
             maze.bordaPellets();
             maze.aframDraugar();
+
                 });
         timeline = new Timeline(k);
         timeline.setCycleCount(Timeline.INDEFINITE);
+        maze.nyrLeikur();
         timeline.play();
 
     }
     public Leikur getLeikur(){
         return leikur;
+    }
+    public void leikLokid(){
+        leikur.leikLokid();
+        timeline.stop();
+    }
+    public void nyrLeikur(){
+        maze.nyrLeikur();
+        timeline.play();
+    }
+    public void showAlertDialog(){
+        Alert alert = new AlertDialog("","Pac-man", "Þú hefur verið gómaður, vilt þú byrja nýjan leik?");
+        Optional<ButtonType> b = alert.showAndWait();
+        if(b.isPresent() && !b.get().getButtonData().isCancelButton()){
+            nyrLeikur();
+        }
     }
 }
 

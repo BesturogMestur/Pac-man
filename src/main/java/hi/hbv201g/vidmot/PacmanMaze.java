@@ -42,8 +42,12 @@ public class PacmanMaze extends GridPane {
     private PacmanController pacmanController;
 
     public PacmanMaze(PacmanController pacmanController) {
-        FXMLLoder maze = new FXMLLoder(this, FILE_NAME);
+        FXMLLoder loader = new FXMLLoder(this, FILE_NAME);
         this.pacmanController = pacmanController;
+        nyrLeikur();
+    }
+    public void nyrLeikur(){
+        fxPacman = new Pacman();
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
@@ -77,6 +81,7 @@ public class PacmanMaze extends GridPane {
             }
         }
     }
+
 
     public void aframDraugar() {
         aframDurgar(blinky);
@@ -129,7 +134,8 @@ public class PacmanMaze extends GridPane {
     private void athugaPacman(Draugar d) {
         if (d.getBoundsInParent().intersects(fxPacman.getBoundsInParent())){
             if (!d.hraedir && !d.etan) {
-                //endaleik
+                pacmanController.leikLokid();
+                pacmanController.showAlertDialog();
             } else if (d.hraedir) {
                 d.setEtan(true);
             }
