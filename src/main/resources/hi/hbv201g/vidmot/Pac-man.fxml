@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root  startAngle="45" type="javafx.scene.shape.Arc" fill="YELLOW" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/11.0.2">
+    <fx:define >
+        <String fx:id="fxPacman"/>
+    </fx:define>
+</fx:root>
