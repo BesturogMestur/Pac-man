@@ -27,4 +27,7 @@ private final double OFFSET=1;
             setCenterY(getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET);
         }
     }
+    public boolean erBorda(Pellets a){
+        return getBoundsInParent().intersects(a.getBoundsInParent());
+    }
 }

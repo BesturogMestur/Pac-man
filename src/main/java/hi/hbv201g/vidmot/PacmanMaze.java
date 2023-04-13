@@ -39,8 +39,11 @@ public class PacmanMaze extends GridPane {
     private Clyde clyde;
     private ObservableList<Pellets> pellets = FXCollections.observableArrayList();
 
-    public PacmanMaze() {
+    private PacmanController pacmanController;
+
+    public PacmanMaze(PacmanController pacmanController) {
         FXMLLoder maze = new FXMLLoder(this, FILE_NAME);
+        this.pacmanController = pacmanController;
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
@@ -62,6 +65,15 @@ public class PacmanMaze extends GridPane {
                     pellets.add(p);
                     add(p, i, j);
                 }
+            }
+        }
+    }
+    public void bordaPellets(){
+        for(Pellets a: pellets){
+            if(fxPacman.erBorda(a)){
+                pellets.remove(a);
+                pacmanController.getLeikur().haekkaStig();
+                getChildren().remove(a);
             }
         }
     }
