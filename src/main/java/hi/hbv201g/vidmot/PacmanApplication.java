@@ -23,6 +23,7 @@ public class PacmanApplication extends Application {
         ViewSwitcher.switchTo(View.FORSIDA);
 
         stage.setScene(scene);
+        stage.setTitle("Pac-Man");
         stage.show();
 
         //MusicPlayer music = new MusicPlayer("src/sounds/soundtrack.mp3");
