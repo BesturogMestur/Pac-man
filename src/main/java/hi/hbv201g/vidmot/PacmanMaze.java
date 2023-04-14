@@ -42,8 +42,9 @@ public class PacmanMaze extends GridPane {
 
     private PacmanController pacmanController;
 
-    public PacmanMaze(PacmanController pacmanController) {
-        this.pacmanController = pacmanController;
+    public PacmanMaze() {
+        FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
+       // this.pacmanController = pacmanController;
         nyrLeikur();
     }
 

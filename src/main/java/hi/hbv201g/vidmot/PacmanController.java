@@ -21,7 +21,7 @@ public class PacmanController {
     @FXML
     private Label fxStig;
     @FXML
-    private PacmanMaze maze = new PacmanMaze(this);
+    private PacmanMaze maze = new PacmanMaze();
     private Leikur leikur;
     private Timeline timeline;
 
