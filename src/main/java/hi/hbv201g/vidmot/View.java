@@ -2,7 +2,7 @@ package hi.hbv201g.vidmot;
 
 public enum View {
     FORSIDA("Forsida.fxml"),
-    LEIKBORD("Leikbord-view.fxml");
+    LEIKBORD("Main.fxml");
 
 
     private String fileName;

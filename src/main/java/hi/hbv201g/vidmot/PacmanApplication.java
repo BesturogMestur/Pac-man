@@ -13,8 +13,8 @@ import java.io.IOException;
 public class PacmanApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Leikbord-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Main.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 470);
 
         //PacmanController pc = fxmlLoader.getController();
         //pc.orvatakkar();
