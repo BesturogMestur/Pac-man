@@ -4,6 +4,8 @@ import hi.hbv201g.vinnsla.MusicPlayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -15,6 +17,8 @@ public class ForsidaController {
     private static MediaPlayer mediaPlayer;
     @FXML
     private Button off;
+    @FXML
+    private Button on;
 
     public static void stopSound() {
         mediaPlayer.stop();
@@ -36,7 +40,6 @@ public class ForsidaController {
         pacmanController = (PacmanController) ViewSwitcher.lookup(View.LEIKBORD);
         //pacmanController.byrjaLeik();
     }
-
 
 }
 

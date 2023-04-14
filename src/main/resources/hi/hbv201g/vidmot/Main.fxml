@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hbv201g.vidmot.PacmanController">
    <children>
       <Label fx:id="fxStig" layoutY="4.0" prefHeight="42.0" prefWidth="166.0" style="-fx-border-color: yellow;" text="Stig: " textFill="#fbff00">
@@ -13,8 +15,25 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="550.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;" fx:id="off" text="Off" onAction="#turnOffMusic"/>
-      <Button layoutX="507.0" layoutY="12.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;" fx:id="on" text="On" onAction="#turnOnMusic"/>
+      <Button fx:id="off" layoutX="550.0" layoutY="12.0" mnemonicParsing="false" onAction="#turnOffMusic" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@myndiroggif/hloðoff.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+      <Button fx:id="on" layoutX="507.0" layoutY="12.0" mnemonicParsing="false" onAction="#turnOnMusic" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: yellow;">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@myndiroggif/hljodon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <PacmanMaze layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" />
    </children>
 </Pane>

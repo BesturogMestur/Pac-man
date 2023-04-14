@@ -84,6 +84,5 @@ public class PacmanController {
     public void turnOnMusic(ActionEvent event) {
         ForsidaController.playSound();
     }
-
 }
 
