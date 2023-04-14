@@ -11,8 +11,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
@@ -55,6 +60,10 @@ public class PacmanController {
     public void leikLokid(){
         leikur.leikLokid();
         timeline.stop();
+        ForsidaController.stopSound();
+        Media sound = new Media(new File("src/sounds/Death.mp3").toURI().toString());
+        MediaPlayer PacManDo = new MediaPlayer(sound);
+        PacManDo.play();
     }
     public void nyrLeikur(){
         maze.nyrLeikur();
