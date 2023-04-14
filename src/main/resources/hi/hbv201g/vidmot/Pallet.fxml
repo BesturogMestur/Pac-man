@@ -2,9 +2,8 @@
 
 <?import javafx.scene.image.*?>
 
-
 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <image>
-      <Image url="@../../../../../myndiroggif/pallet.png" />
+      <Image url="@myndiroggif/pallet.png" />
    </image>
 </ImageView>

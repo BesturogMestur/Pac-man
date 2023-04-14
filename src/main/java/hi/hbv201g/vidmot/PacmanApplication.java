@@ -30,6 +30,7 @@ public class PacmanApplication extends Application {
         //music.play();
         //music.setVolume(0.5);
         //pc.byrjaLeik();
+
     }
 
 
