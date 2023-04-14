@@ -10,7 +10,7 @@
 <?import javafx.scene.image.Image?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hi.hbv201g.vidmot.PacmanController">
    <children>
-      <Label fx:id="fxStig" layoutY="4.0" prefHeight="42.0" prefWidth="166.0" style="-fx-border-color: yellow;" text="Stig: " textFill="#fbff00">
+      <Label fx:id="fxStig" layoutY="4.0" prefHeight="42.0" prefWidth="166.0" text="Stig: " textFill="#fbff00">
          <font>
             <Font size="16.0" />
          </font>
