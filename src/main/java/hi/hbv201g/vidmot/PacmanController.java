@@ -6,6 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class PacmanController {
     @FXML
     private Label fxStig;
     @FXML
-    private PacmanMaze maze;
+    private PacmanMaze maze = new PacmanMaze(this);
     private Leikur leikur;
     private Timeline timeline;
 

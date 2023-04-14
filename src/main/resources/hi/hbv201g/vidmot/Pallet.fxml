@@ -3,8 +3,10 @@
 <?import javafx.scene.image.*?>
 
 
-<ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <image>
-      <Image url="@../../../../../myndiroggif/pallet.png" />
-   </image>
-</ImageView>
+<?import java.lang.String?>
+<fx:root radius="4" type="javafx.scene.shape.Circle" fill="WHITE" xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/11.0.2">
+    <fx:define >
+        <String fx:id="Pellet" fx:value="White" />
+    </fx:define>
+</fx:root>

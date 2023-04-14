@@ -13,22 +13,16 @@ import java.io.IOException;
 public class PacmanApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Forsida.fxml"));
-       // Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+        FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Leikbord-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
         //PacmanController pc = fxmlLoader.getController();
         //pc.orvatakkar();
-        var scene = new Scene(new Pane());
+
         ViewSwitcher.setScene(scene);
         ViewSwitcher.switchTo(View.FORSIDA);
-
         stage.setScene(scene);
         stage.show();
-
-        //MusicPlayer music = new MusicPlayer("src/sounds/soundtrack.mp3");
-        //music.play();
-        //music.setVolume(0.5);
-        //pc.byrjaLeik();
     }
 
 
