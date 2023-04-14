@@ -16,6 +16,7 @@ public class PacmanApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 470);
 
+
         //PacmanController pc = fxmlLoader.getController();
         //pc.orvatakkar();
 
