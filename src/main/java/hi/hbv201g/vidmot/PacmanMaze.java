@@ -70,7 +70,7 @@ public class PacmanMaze extends GridPane {
                 if (MAZE[i][j]) {
                     Pellets p = new Pellets();
                     pellets.add(p);
-                    add(p, i, j);
+                    setConstraints(p,i,j);
                 }
             }
         }
