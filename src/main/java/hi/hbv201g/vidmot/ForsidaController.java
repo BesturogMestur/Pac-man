@@ -13,6 +13,15 @@ import java.io.File;
 public class ForsidaController {
     private PacmanController pacmanController;
     private static MediaPlayer mediaPlayer;
+    @FXML
+    private Button off;
+
+    public static void stopSound() {
+        mediaPlayer.stop();
+    }
+    public static void playSound() {
+        mediaPlayer.play();
+    }
 
     public void fxHefjaHandler(ActionEvent actionEvent) {
         ViewSwitcher.switchTo(View.LEIKBORD);
@@ -28,8 +37,6 @@ public class ForsidaController {
         //pacmanController.byrjaLeik();
     }
 
-    public static void stopSound() {
-        mediaPlayer.stop();
-    }
+
 }
 

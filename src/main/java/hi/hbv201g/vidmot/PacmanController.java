@@ -77,6 +77,13 @@ public class PacmanController {
             nyrLeikur();
         }
     }
+    public void turnOffMusic(ActionEvent event) {
+        ForsidaController.stopSound();
+    }
+
+    public void turnOnMusic(ActionEvent event) {
+        ForsidaController.playSound();
+    }
 
 }
 
