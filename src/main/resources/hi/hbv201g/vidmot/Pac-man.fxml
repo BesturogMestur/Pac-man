@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.Arc?>
-<fx:root centerX="3.0" centerY="3.0" fill="YELLOW" length="10.0" radiusX="100.0" radiusY="100.0" scaleX="10.0"
-         scaleY="10.0" startAngle="45" type="javafx.scene.shape.Arc" xmlns="http://javafx.com/javafx/19"
-         xmlns:fx="http://javafx.com/fxml/1">
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root  startAngle="45" type="javafx.scene.shape.Arc" fill="YELLOW" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/11.0.2">
+    <fx:define >
+        <String fx:id="fxPacman"/>
+    </fx:define>
 </fx:root>

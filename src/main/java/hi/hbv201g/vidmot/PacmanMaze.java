@@ -32,8 +32,8 @@ public class PacmanMaze extends GridPane {
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
-    @FXML
-    Pacman fxPacman;
+
+    private Pacman fxPacman;
     private Blinky blinky;
     private Inky inky;
     private Pinky pinky;
@@ -43,7 +43,6 @@ public class PacmanMaze extends GridPane {
     private PacmanController pacmanController;
 
     public PacmanMaze(PacmanController pacmanController) {
-        FXMLLoder loader = new FXMLLoder(this, FILE_NAME);
         this.pacmanController = pacmanController;
         nyrLeikur();
     }

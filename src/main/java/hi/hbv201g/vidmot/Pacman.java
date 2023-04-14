@@ -5,6 +5,9 @@ import javafx.scene.shape.Arc;
 public class Pacman extends Arc implements Afarm, Hnit {
 private final double OFFSET=1;
 
+    public Pacman(){
+        FXMLLoder loader = new FXMLLoder(this,"Pac-man.fxml");
+    }
     public double[] Hnit(){
         double[]a=new double[2];
         a[0]=getCenterX();
