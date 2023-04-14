@@ -5,6 +5,6 @@
 
 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <image>
-      <Image url="@myndiroggif/pacmanUp.gif" />
+      <Image url="@myndiroggif/pink.gif" />
    </image>
 </ImageView>

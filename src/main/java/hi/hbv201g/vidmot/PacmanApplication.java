@@ -22,6 +22,7 @@ public class PacmanApplication extends Application {
         ViewSwitcher.setScene(scene);
         ViewSwitcher.switchTo(View.FORSIDA);
         stage.setScene(scene);
+        stage.setTitle("Pac-Man");
         stage.show();
     }
 
