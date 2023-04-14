@@ -49,7 +49,7 @@ public class PacmanMaze extends GridPane {
 
     public void nyrLeikur() {
         fxPacman = new Pacman();
-        add(fxPacman,1,1);
+        setConstraints(fxPacman,1,1);
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
@@ -76,7 +76,11 @@ public class PacmanMaze extends GridPane {
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman));
+        fxPacman.afarm(walls(fxPacman),this);
+    }
+
+    public void faeraPcak(double a, double b){
+        setConstraints(fxPacman,(int)(getColumnIndex(fxPacman)+a),(int)(getRowIndex(fxPacman)+b));
     }
 
     public void aframDraugar() {
@@ -107,8 +111,12 @@ public class PacmanMaze extends GridPane {
         }
 
 
-        d.afarm(walls(d));
+        d.afarm(walls(d),this);
         athugaPacman(d);
+    }
+
+    public void fearDrauga(double a, double b, Draugar d){
+        setConstraints(d,(int)(getColumnIndex(d)+a),(int)(getRowIndex(d)+b));
     }
 
     private boolean[] walls(Node n) {

@@ -19,18 +19,20 @@ private final double OFFSET=1;
         return getRotate();
     }
 
+    public boolean erBorda(Pellets a){
+        return getBoundsInParent().intersects(a.getBoundsInParent());
+    }
+
     @Override
-    public void afarm(boolean[] path) {
+    public void afarm(boolean[] path, PacmanMaze grid) {
         double att = getStefna() - 90;
         if (att < 0) {
             att = 360;
         }
         if (path[(int) (att / 90) - 1]) {
-            setCenterX(getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET);
-            setCenterY(getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET);
+            double a = getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
+            double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
+            grid.faeraPcak(a,b);
         }
-    }
-    public boolean erBorda(Pellets a){
-        return getBoundsInParent().intersects(a.getBoundsInParent());
     }
 }
