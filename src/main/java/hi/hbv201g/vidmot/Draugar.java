@@ -17,7 +17,6 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public abstract double drauaReikniritd(double[] a);
 
     public Draugar(Pacman p, double[] a, double[] b, double[] home) {
-        FXMLLoder loader = new FXMLLoder(this,"Draugar.fxml");
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;
