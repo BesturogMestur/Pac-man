@@ -38,7 +38,7 @@ public class ForsidaController {
         mediaPlayer.play();
 
         pacmanController = (PacmanController) ViewSwitcher.lookup(View.LEIKBORD);
-        //pacmanController.byrjaLeik();
+        pacmanController.byrjaLeik();
     }
 
 }

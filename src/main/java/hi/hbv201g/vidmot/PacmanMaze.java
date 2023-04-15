@@ -19,7 +19,6 @@ public class PacmanMaze extends GridPane {
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
-
     private Pacman fxPacman;
     private Blinky blinky;
     private Inky inky;
@@ -27,11 +26,10 @@ public class PacmanMaze extends GridPane {
     private Clyde clyde;
     private ObservableList<Pellets> pellets = FXCollections.observableArrayList();
 
-    private PacmanController pacmanController;
+
 
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
-        // this.pacmanController = pacmanController;
         setMaze();
         nyrLeikur();
     }
@@ -59,11 +57,11 @@ public class PacmanMaze extends GridPane {
         setPellets();
     }
 
-    private void setPecman(){
+    private void setPecman() {
         fxPacman = new Pacman();
-        add(fxPacman,6,10);
-        setHalignment(fxPacman,HPos.CENTER);
-        setValignment(fxPacman,VPos.CENTER);
+        add(fxPacman, 6, 10);
+        setHalignment(fxPacman, HPos.CENTER);
+        setValignment(fxPacman, VPos.CENTER);
     }
 
     private void setDraugar() {
@@ -75,9 +73,9 @@ public class PacmanMaze extends GridPane {
     }
 
     public void setPellets() {
-        for (int i = 1; i < getColumnCount()-1; i++) {
-            for (int j = 1; j < getRowCount()-1; j++) {
-                if(!((i ==5||i==6||i==7) && (j==7||j==8))){
+        for (int i = 1; i < getColumnCount() - 1; i++) {
+            for (int j = 1; j < getRowCount() - 1; j++) {
+                if (!((i == 5 || i == 6 || i == 7) && (j == 7 || j == 8))) {
                     if (maze[i][j]) {
                         Pellets p = new Pellets();
                         pellets.add(p);
@@ -92,34 +90,32 @@ public class PacmanMaze extends GridPane {
 
     /**
      * þesso aferð tekur in kommu tölu og stillir síðan stfnu þess á botaum.
+     *
      * @param d Kommu tala
      */
     public void setStefna(Double d) {
         fxPacman.setRotate(d);
-        System.out.println(fxPacman.getRotate());
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman));
+        fxPacman.afarm(walls(fxPacman), this);
     }
 
     public void faeraPcak(double a, double b) {
-        setColumnIndex(fxPacman,(int) (getColumnIndex(fxPacman) + a));
-        setRowIndex(fxPacman, (int) (getRowIndex(fxPacman) + b));
-        //setConstraints(fxPacman, (int) (getColumnIndex(fxPacman) + a), (int) (getRowIndex(fxPacman) + b));
+        setConstraints(fxPacman, (int) (getColumnIndex(fxPacman) + a), (int) (getRowIndex(fxPacman) + b));
     }
 
-    public void aframDraugar() {
-        aframDurgar(blinky);
-        aframDurgar(inky);
-        aframDurgar(pinky);
-        aframDurgar(clyde);
+    public void aframDraugar(PacmanController sc) {
+        aframDurgar(blinky, sc);
+        aframDurgar(inky, sc);
+        aframDurgar(pinky, sc);
+        aframDurgar(clyde, sc);
         if (timi <= 0) {
             uppfraeraTima();
         }
     }
 
-    private void aframDurgar(Draugar d) {
+    private void aframDurgar(Draugar d, PacmanController sc) {
         int[] a = new int[2];
         a[0] = getColumnIndex(d);
         a[1] = getRowIndex(d);
@@ -137,8 +133,8 @@ public class PacmanMaze extends GridPane {
         }
 
 
-        d.afarm(walls(d));
-        athugaPacman(d);
+        d.afarm(walls(d), this);
+        athugaPacman(d, sc);
     }
 
     public void fearDrauga(double a, double b, Draugar d) {
@@ -154,16 +150,16 @@ public class PacmanMaze extends GridPane {
         for (int i = 0; i < walls.length; i++) {
             if (i % 2 == 0) {
                 if (i == 0) {
-                    walls[i] = maze[a[0] + 1][a[1]];
+                    walls[i] = maze[a[0]][a[1]+1];
                 } else {
-                    walls[i] = maze[a[0] - 1][a[1]];
+                    walls[i] = maze[a[0]][a[1]-1];
                 }
 
             } else {
                 if (i == 1) {
-                    walls[i] = maze[a[0]][a[1] + 1];
+                    walls[i] = maze[a[0]+1][a[1]];
                 } else {
-                    walls[i] = maze[a[0]][a[1] - 1];
+                    walls[i] = maze[a[0]-1][a[1]];
                 }
             }
         }
@@ -171,11 +167,11 @@ public class PacmanMaze extends GridPane {
 
     }
 
-    private void athugaPacman(Draugar d) {
+    private void athugaPacman(Draugar d, PacmanController sc) {
         if (d.getBoundsInParent().intersects(fxPacman.getBoundsInParent())) {
             if (!d.hraedir && !d.etan) {
-                pacmanController.leikLokid();
-                pacmanController.showAlertDialog();
+                sc.leikLokid();
+                sc.showAlertDialog();
             } else if (d.hraedir) {
                 d.setEtan(true);
             }
@@ -190,11 +186,11 @@ public class PacmanMaze extends GridPane {
         timi = TIMAR[havdaTimi];
     }
 
-    public void bordaPellets() {
+    public void bordaPellets(PacmanController sc) {
         for (Pellets a : pellets) {
             if (fxPacman.erBorda(a)) {
                 pellets.remove(a);
-                pacmanController.getLeikur().haekkaStig();
+                sc.getLeikur().haekkaStig();
                 getChildren().remove(a);
             }
         }

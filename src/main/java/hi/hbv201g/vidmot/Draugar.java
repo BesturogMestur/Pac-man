@@ -13,14 +13,12 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     private Random random;
     private final double MAX_LEND;
     private final double[] HOME;
-    private PacmanMaze maze;
     public abstract double drauaReikniritd(double[] a);
 
     public Draugar(Pacman p, double[] a, double[] b, double[] home) {
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;
-        maze=(PacmanMaze) ViewSwitcher.lookup(View.MAZE);
     }
 
     public void setHredir(boolean hraedir) {
@@ -83,14 +81,14 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return a;
     }
 
-    private void direson() {
+    private void direson(PacmanMaze sc) {
         double a =  getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
         double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
-        maze.fearDrauga(a,b,this);
+        sc.fearDrauga(a,b,this);
     }
 
     @Override
-    public void afarm(boolean[] path) {
+    public void afarm(boolean[] path, PacmanMaze sc) {
         double bakvid = turnAround();
         double minLend = MAX_LEND;
         double lend = minLend;
@@ -106,7 +104,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
                     }
                 }
             }
-            direson();
+            direson(sc);
         } else {
             for (int i = 0; i < 4; i++) {
                 double att = (90 + (90 * i)) % 360;
@@ -122,7 +120,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
                     }
                 }
             }
-            direson();
+            direson(sc);
         }
     }
 }

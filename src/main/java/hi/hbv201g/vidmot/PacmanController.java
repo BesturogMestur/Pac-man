@@ -23,7 +23,7 @@ public class PacmanController {
     @FXML
     private Label fxStig;
     @FXML
-    private PacmanMaze maze = new PacmanMaze();
+    private PacmanMaze maze;
     private Leikur leikur;
     private Timeline timeline;
 
@@ -32,14 +32,15 @@ public class PacmanController {
     public void initialize() {
         leikur = new Leikur();
         fxStig.textProperty().bind(leikur.stiginproperty().asString());
+        maze = new PacmanMaze();
     }
 
     public void byrjaLeik() {
         KeyFrame k = new KeyFrame(Duration.millis(100.0),
                 e -> {
                     maze.pacmanAfram();
-                    maze.bordaPellets();
-                    maze.aframDraugar();
+                    //maze.bordaPellets(this);
+                    //maze.aframDraugar(this);
 
                 });
         timeline = new Timeline(k);

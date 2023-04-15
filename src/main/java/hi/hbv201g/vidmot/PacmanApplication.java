@@ -15,10 +15,8 @@ public class PacmanApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PacmanApplication.class.getResource("Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 470);
-
-
-        //PacmanController pc = fxmlLoader.getController();
-        //pc.orvatakkar();
+        PacmanController pc = fxmlLoader.getController();
+        pc.orvatakkar();
 
         ViewSwitcher.setScene(scene);
         ViewSwitcher.switchTo(View.FORSIDA);
