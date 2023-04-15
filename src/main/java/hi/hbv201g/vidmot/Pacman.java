@@ -30,8 +30,8 @@ private final double OFFSET=1;
             att = 360;
         }
         if (path[(int) (att / 90) - 1]) {
-            double a = getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
-            double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
+            int a = (int)(Math.cos(Math.toRadians(getRotate())) * OFFSET);
+            int b =(int) (Math.sin(Math.toRadians(getRotate())) * OFFSET);
             sc.faeraPcak(a,b);
         }
     }

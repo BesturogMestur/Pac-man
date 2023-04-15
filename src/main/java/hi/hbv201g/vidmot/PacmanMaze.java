@@ -2,7 +2,9 @@ package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -19,14 +21,13 @@ public class PacmanMaze extends GridPane {
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
+    @FXML
     private Pacman fxPacman;
     private Blinky blinky;
     private Inky inky;
     private Pinky pinky;
     private Clyde clyde;
     private ObservableList<Pellets> pellets = FXCollections.observableArrayList();
-
-
 
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
@@ -51,15 +52,15 @@ public class PacmanMaze extends GridPane {
     }
 
     public void nyrLeikur() {
-        setPecman();
+        setPecman(6, 10);
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
     }
 
-    private void setPecman() {
+    private void setPecman(int x, int y) {
         fxPacman = new Pacman();
-        add(fxPacman, 6, 10);
+        add(fxPacman, x, y);
         setHalignment(fxPacman, HPos.CENTER);
         setValignment(fxPacman, VPos.CENTER);
     }
@@ -101,8 +102,9 @@ public class PacmanMaze extends GridPane {
         fxPacman.afarm(walls(fxPacman), this);
     }
 
-    public void faeraPcak(double a, double b) {
-        setConstraints(fxPacman, (int) (getColumnIndex(fxPacman) + a), (int) (getRowIndex(fxPacman) + b));
+    public void faeraPcak(int a, int b) {
+        setConstraints(fxPacman, (getColumnIndex(fxPacman) + a), (getRowIndex(fxPacman) + b));
+
     }
 
     public void aframDraugar(PacmanController sc) {
@@ -150,16 +152,16 @@ public class PacmanMaze extends GridPane {
         for (int i = 0; i < walls.length; i++) {
             if (i % 2 == 0) {
                 if (i == 0) {
-                    walls[i] = maze[a[0]][a[1]+1];
+                    walls[i] = maze[a[0]][a[1] + 1];
                 } else {
-                    walls[i] = maze[a[0]][a[1]-1];
+                    walls[i] = maze[a[0]][a[1] - 1];
                 }
 
             } else {
                 if (i == 1) {
-                    walls[i] = maze[a[0]+1][a[1]];
+                    walls[i] = maze[a[0] + 1][a[1]];
                 } else {
-                    walls[i] = maze[a[0]-1][a[1]];
+                    walls[i] = maze[a[0] - 1][a[1]];
                 }
             }
         }
