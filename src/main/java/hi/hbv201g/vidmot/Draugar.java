@@ -17,6 +17,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public abstract double drauaReikniritd(double[] a);
 
     public Draugar(Pacman p, double[] a, double[] b, double[] home) {
+        FXMLLoder loder=new FXMLLoder(this,"Draugar.fxml");
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;
@@ -69,6 +70,13 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return (getRotate() + 180) % 360;
     }
 
+    /**
+     * hér er reikna frlæðina í pacman frá staðsetið dausin sem er fengin með
+     * double fylki sem hfur x gildi og y gildi draugis
+     *
+     * @param a staðsetin draugsins
+     * @return frlæðina í pac
+     */
     public double ToPac(double[] a) {
         return reknirit(a, p.Hnit());
     }
