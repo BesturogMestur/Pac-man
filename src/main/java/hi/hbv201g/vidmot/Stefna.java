@@ -1,4 +1,4 @@
-package hi.hbv201g.vinnsla;
+package hi.hbv201g.vidmot;
 
 public enum Stefna {
     NIDUR(270), HAEGRI(0), VINSTRI(180), UPP(90);

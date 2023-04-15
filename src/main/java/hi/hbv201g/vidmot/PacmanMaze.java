@@ -2,7 +2,6 @@ package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -190,12 +189,16 @@ public class PacmanMaze extends GridPane {
 
     public void bordaPellets(PacmanController sc) {
         for (Pellets a : pellets) {
-            if (fxPacman.erBorda(a)) {
+            if (erBorda(a)) {
                 pellets.remove(a);
-                sc.getLeikur().haekkaStig();
                 getChildren().remove(a);
+                sc.getLeikur().haekkaStig();
             }
         }
+    }
+
+    public boolean erBorda(Pellets a) {
+        return a.getBoundsInParent().intersects(fxPacman.getBoundsInParent());
     }
 
 }

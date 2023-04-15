@@ -1,7 +1,6 @@
 package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vinnsla.Leikur;
-import hi.hbv201g.vinnsla.Stefna;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
