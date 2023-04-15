@@ -7,6 +7,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 public class PacmanMaze extends GridPane {
 
@@ -66,6 +68,7 @@ public class PacmanMaze extends GridPane {
     private void setDraugar() {
         blinky = new Blinky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, BLINKY_HOME);
         blinky.getStyleClass().add("redghost.gif");
+        blinky.setFill(Color.rgb(255,0,0));
         add(blinky,1,1);
         setHalignment(blinky,HPos.CENTER);
         setValignment(blinky,VPos.CENTER);

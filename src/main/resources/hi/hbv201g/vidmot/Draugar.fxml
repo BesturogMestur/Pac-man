@@ -6,6 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root fill="WHITE" radius="10.0" type="javafx.scene.shape.Circle" xmlns="http://javafx.com/javafx/17.0.2-ea"
+<fx:root fill="WHITE" radius="12.0" type="javafx.scene.shape.Circle" xmlns="http://javafx.com/javafx/17.0.2-ea"
          xmlns:fx="http://javafx.com/fxml/1">
 </fx:root>
