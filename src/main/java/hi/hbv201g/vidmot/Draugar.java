@@ -13,6 +13,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     private Random random;
     private final double MAX_LEND;
     private final double[] HOME;
+
     public abstract double drauaReikniritd(double[] a);
 
     public Draugar(Pacman p, double[] a, double[] b, double[] home) {
@@ -21,16 +22,35 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         HOME = home;
     }
 
+    /**
+     * stilir hvor daugar eru hræædir við pacman það er að seyja
+     * hvor pack mann getur étið þá eða ekki, þetta hefur sá áfirf
+     * að draugnir færst handhófslega
+     *
+     * @param hraedir er boolean breyta.
+     */
     public void setHredir(boolean hraedir) {
         setRotate(turnAround());
         this.hraedir = hraedir;
     }
 
+    /**
+     * Hér er still hvor draugarning eru að elda pacman eða
+     * stefna heim með því að taka inn boolean beytu
+     *
+     * @param elta er boolean breyta
+     */
     public void setElta(boolean elta) {
         setRotate(turnAround());
         this.elta = elta;
     }
 
+    /**
+     * aðferinn stillir hvort draugaring eru étir eða ekki
+     * of svo er þá fara þeir aftur heim.
+     *
+     * @param etan boolean breyta
+     */
     public void setEtan(boolean etan) {
         if (hraedir) {
             hraedir = false;
@@ -38,6 +58,13 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         this.etan = etan;
     }
 
+    /**
+     * þess að ferð skilar stefnuni sem er beynt fyrir aftan
+     * draugin, það er að seyja ef hann er að fara upp þá
+     * skilar það niður.
+     *
+     * @return sikar gáðuni sem er firir aftan
+     */
     private double turnAround() {
         return (getRotate() + 180) % 360;
     }
@@ -60,6 +87,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         a[1] = getCenterY();
         return a;
     }
+
     public int reknirit(double[] d, double[] stefna) {
         return (int) (Math.pow(d[0] - stefna[0], 2) + Math.pow(d[0] - stefna[0], 2));
     }
@@ -82,9 +110,9 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     }
 
     private void direson(PacmanMaze sc) {
-        double a =  getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
+        double a = getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
         double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
-        sc.fearDrauga(a,b,this);
+        sc.fearDrauga(a, b, this);
     }
 
     @Override
@@ -97,8 +125,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
             setRotate(random.nextInt(4));
             while (bakvid == getRotate()) {
                 setRotate(random.nextInt(4));
-                for(int i=0; i< path.length;i++){
-                    if(getRotate()==(90+(90*i))%360&&!path[i]){
+                for (int i = 0; i < path.length; i++) {
+                    if (getRotate() == (90 + (90 * i)) % 360 && !path[i]) {
                         setRotate(bakvid);
                         break;
                     }

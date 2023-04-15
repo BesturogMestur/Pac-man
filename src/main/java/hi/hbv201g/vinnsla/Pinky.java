@@ -6,12 +6,13 @@ import hi.hbv201g.vidmot.Stefna;
 
 public class Pinky extends Draugar {
     private final double[] HOME_BASE;
+
     public Pinky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
         super(p, a, b, home);
-        HOME_BASE=homeBase;
+        HOME_BASE = homeBase;
     }
 
-    public double drauaReikniritd (double[] a) {
+    public double drauaReikniritd(double[] a) {
         if (!etan) {
             if (elta) {
                 double[] stefna = p.Hnit();
@@ -27,7 +28,7 @@ public class Pinky extends Draugar {
                 }
                 return ToPac(a);
             } else {
-                return ToHomeBaes(a,HOME_BASE);
+                return ToHomeBaes(a, HOME_BASE);
             }
 
         } else {
