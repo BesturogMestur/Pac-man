@@ -1,12 +1,16 @@
 package hi.hbv201g.vidmot;
 
+import hi.hbv201g.vidmot.FXMLLoder;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.Circle;
 
-public class Pacman extends Arc implements Afarm, Hnit {
+public class Pacman extends Circle implements Afarm, Hnit {
 private final double OFFSET=1;
+private PacmanMaze pacmanMaze;
 
     public Pacman(){
         FXMLLoder loader = new FXMLLoder(this,"Pac-man.fxml");
+        pacmanMaze=(PacmanMaze) ViewSwitcher.lookup(View.MAZE);
     }
     public double[] Hnit(){
         double[]a=new double[2];
@@ -24,7 +28,7 @@ private final double OFFSET=1;
     }
 
     @Override
-    public void afarm(boolean[] path, PacmanMaze grid) {
+    public void afarm(boolean[] path) {
         double att = getStefna() - 90;
         if (att < 0) {
             att = 360;
@@ -32,7 +36,8 @@ private final double OFFSET=1;
         if (path[(int) (att / 90) - 1]) {
             double a = getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
             double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
-            grid.faeraPcak(a,b);
+            pacmanMaze.faeraPcak(a,b);
+
         }
     }
 }

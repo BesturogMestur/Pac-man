@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Stop;
@@ -31,12 +32,6 @@ public class PacmanController {
     private Timeline timeline;
 
     private HashMap<KeyCode, Stefna> map = new HashMap<KeyCode, Stefna>();
-    public void orvatakkar(){
-        map.put(KeyCode.RIGHT, Stefna.HAEGRI);
-        map.put(KeyCode.LEFT, Stefna.VINSTRI);
-        map.put(KeyCode.UP, Stefna.UPP);
-        map.put(KeyCode.DOWN, Stefna.NIDUR);
-    }
     public void initialize(){
         leikur = new Leikur();
         fxStig.textProperty().bind(leikur.stiginproperty().asString());
@@ -54,6 +49,24 @@ public class PacmanController {
         timeline.play();
 
     }
+    public void orvatakkar(){
+        map.put(KeyCode.RIGHT, Stefna.HAEGRI);
+        map.put(KeyCode.LEFT, Stefna.VINSTRI);
+        map.put(KeyCode.UP, Stefna.UPP);
+        map.put(KeyCode.DOWN, Stefna.NIDUR);
+        fxStig.getScene().addEventFilter(KeyEvent.ANY, event -> {
+            try {
+                this.setStefna(map.get(event.getCode()).getGradur());
+            } catch (NullPointerException e) {
+                event.consume();
+            }
+        });
+    }
+
+    private void setStefna(double d){
+        maze.setStefna(d);
+    }
+
     public Leikur getLeikur(){
         return leikur;
     }

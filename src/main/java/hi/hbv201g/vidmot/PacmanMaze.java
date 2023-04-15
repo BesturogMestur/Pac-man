@@ -3,6 +3,8 @@ package hi.hbv201g.vidmot;
 import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -51,11 +53,17 @@ public class PacmanMaze extends GridPane {
     }
 
     public void nyrLeikur() {
-        fxPacman = new Pacman();
-        setConstraints(fxPacman, 1, 1);
+        setPecman();
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
+    }
+
+    private void setPecman(){
+        fxPacman = new Pacman();
+        add(fxPacman,6,10);
+        setHalignment(fxPacman,HPos.CENTER);
+        setValignment(fxPacman,VPos.CENTER);
     }
 
     private void setDraugar() {
@@ -67,19 +75,32 @@ public class PacmanMaze extends GridPane {
     }
 
     public void setPellets() {
-        for (int i = 1; i < maze.length - 1; i++) {
-            for (int j = 1; j < maze.length - 1; j++) {
-                if (maze[i][j]) {
-                    Pellets p = new Pellets();
-                    pellets.add(p);
-                    setConstraints(p, i, j);
+        for (int i = 1; i < getColumnCount()-1; i++) {
+            for (int j = 1; j < getRowCount()-1; j++) {
+                if(!((i ==5||i==6||i==7) && (j==7||j==8))){
+                    if (maze[i][j]) {
+                        Pellets p = new Pellets();
+                        pellets.add(p);
+                        add(p, i, j);
+                        setHalignment(p, HPos.CENTER);
+                        setValignment(p, VPos.CENTER);
+                    }
                 }
             }
         }
     }
 
+    /**
+     * þesso aferð tekur in kommu tölu og stillir síðan stfnu þess á botaum.
+     * @param d Kommu tala
+     */
+    public void setStefna(Double d) {
+        fxPacman.setRotate(d);
+        System.out.println(fxPacman.getRotate());
+    }
+
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman), this);
+        fxPacman.afarm(walls(fxPacman));
     }
 
     public void faeraPcak(double a, double b) {
@@ -114,7 +135,7 @@ public class PacmanMaze extends GridPane {
         }
 
 
-        d.afarm(walls(d), this);
+        d.afarm(walls(d));
         athugaPacman(d);
     }
 
