@@ -20,6 +20,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;
+        FXMLLoder loader = new FXMLLoder(this,"Draugar.fxml");
     }
 
     /**

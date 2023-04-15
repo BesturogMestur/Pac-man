@@ -66,9 +66,13 @@ public class PacmanMaze extends GridPane {
 
     private void setDraugar() {
         blinky = new Blinky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, BLINKY_HOME);
+        blinky.getStyleClass().add("redghost.gif");
         inky = new Inky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, MESTA_LEGNT_FRA_UPPHAF, blinky);
+        inky.getStyleClass().add("cyan.gif");
         pinky = new Pinky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, UPPHAFS_PUNKTUR);
+        pinky.getStyleClass().add("pink.gif");
         clyde = new Clyde(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, CLYDE_HOME);
+        clyde.getStyleClass().add("yellowghost.gif");
 
     }
 
