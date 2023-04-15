@@ -2,6 +2,7 @@ package hi.hbv201g.vinnsla;
 
 import hi.hbv201g.vidmot.Draugar;
 import hi.hbv201g.vidmot.Pacman;
+import hi.hbv201g.vidmot.Stefna;
 
 public class Pinky extends Draugar {
     private final double[] HOME_BASE;
