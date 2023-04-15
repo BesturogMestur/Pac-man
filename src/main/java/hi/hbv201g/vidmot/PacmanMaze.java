@@ -108,7 +108,6 @@ public class PacmanMaze extends GridPane {
 
     public void faeraPcak(int a, int b) {
         setConstraints(fxPacman, (getColumnIndex(fxPacman) + a), (getRowIndex(fxPacman) + b));
-
     }
 
     public void aframDraugar(PacmanController sc) {

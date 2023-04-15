@@ -26,7 +26,7 @@ public class PacmanController {
     private Leikur leikur;
     private Timeline timeline;
 
-    private HashMap<KeyCode, Stefna> map = new HashMap<KeyCode, Stefna>();
+    private HashMap<KeyCode, Stefna> map = new HashMap<KeyCode,Stefna>();
 
     public void initialize() {
         leikur = new Leikur();
