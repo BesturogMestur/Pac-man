@@ -94,10 +94,22 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return reknirit(a, homeBase);
     }
 
+    /**
+     * hér er reikað frlæðia til draugabælið með því að vita staðsetingu
+     * á drauginum.
+     *
+     * @param a er stað setingin á drauginum
+     * @return frækaðin í drauga bælið
+     */
     public double home(double[] a) {
         return reknirit(a, HOME);
     }
 
+    /**
+     * hér fáum við staðsetinu á drauginum
+     *
+     * @return filki sem inni heldur x og y hnit drausins
+     */
     public double[] Hnit() {
         double[] a = new double[2];
         a[0] = getCenterX();
@@ -105,6 +117,13 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return a;
     }
 
+    /**
+     * hér er reiknitritið sem fem reiknar út frlæðinar á milli tvegja
+     * staðsetinat og sem eru gefnar með fylkum.
+     * @param d
+     * @param stefna
+     * @return
+     */
     public int reknirit(double[] d, double[] stefna) {
         return (int) (Math.pow(d[0] - stefna[0], 2) + Math.pow(d[0] - stefna[0], 2));
     }
