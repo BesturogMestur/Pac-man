@@ -45,6 +45,7 @@ public class PacmanMaze extends GridPane {
             if (child instanceof Veggur) {
                 int i = getColumnIndex(child);
                 int j = getRowIndex(child);
+                System.out.println(i+" "+j);
                 maze[i][j] = false;
             }
         }

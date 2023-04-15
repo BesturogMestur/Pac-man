@@ -1,6 +1,7 @@
 package hi.hbv201g.vinnsla;
 
 import hi.hbv201g.vidmot.Draugar;
+import hi.hbv201g.vidmot.FXMLLoder;
 import hi.hbv201g.vidmot.Pacman;
 
 public class Blinky extends Draugar {
