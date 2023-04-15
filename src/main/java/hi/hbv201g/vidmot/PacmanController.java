@@ -32,6 +32,7 @@ public class PacmanController {
         leikur = new Leikur();
         fxStig.textProperty().bind(leikur.stiginproperty().asString());
         maze = new PacmanMaze();
+
     }
 
     public void byrjaLeik() {

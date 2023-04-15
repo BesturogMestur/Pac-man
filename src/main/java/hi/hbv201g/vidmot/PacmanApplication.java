@@ -18,6 +18,7 @@ public class PacmanApplication extends Application {
         PacmanController pc = fxmlLoader.getController();
         pc.orvatakkar();
 
+
         ViewSwitcher.setScene(scene);
         ViewSwitcher.switchTo(View.FORSIDA);
         stage.setScene(scene);

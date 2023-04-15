@@ -54,6 +54,7 @@ public class PacmanMaze extends GridPane {
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
+
     }
 
     private void setPecman(int x, int y) {
@@ -109,7 +110,7 @@ public class PacmanMaze extends GridPane {
     }
 
     public void faeraPcak(int a, int b) {
-        setConstraints(fxPacman, (getColumnIndex(fxPacman) + a), (getRowIndex(fxPacman) + b));
+       setConstraints(fxPacman, (getColumnIndex(fxPacman) + a), (getRowIndex(fxPacman) + b));
     }
 
     public void aframDraugar(PacmanController sc) {
