@@ -6,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -14,12 +13,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Stop;
 import javafx.util.Duration;
 
-
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -27,20 +23,24 @@ public class PacmanController {
     @FXML
     private Label fxStig;
     @FXML
-    private PacmanMaze maze = new PacmanMaze();
+    private PacmanMaze maze;
     private Leikur leikur;
     private Timeline timeline;
 
     private HashMap<KeyCode, Stefna> map = new HashMap<KeyCode, Stefna>();
-    public void initialize(){
+
+    public void initialize() {
         leikur = new Leikur();
         fxStig.textProperty().bind(leikur.stiginproperty().asString());
+        maze = new PacmanMaze();
     }
-    public void byrjaLeik(){
+
+    public void byrjaLeik() {
         KeyFrame k = new KeyFrame(Duration.millis(100.0),
                 e -> {
-            maze.bordaPellets();
-            maze.aframDraugar();
+                    maze.pacmanAfram();
+                    //maze.bordaPellets(this);
+                    //maze.aframDraugar(this);
 
                 });
         timeline = new Timeline(k);
@@ -49,7 +49,8 @@ public class PacmanController {
         timeline.play();
 
     }
-    public void orvatakkar(){
+
+    public void orvatakkar() {
         map.put(KeyCode.RIGHT, Stefna.HAEGRI);
         map.put(KeyCode.LEFT, Stefna.VINSTRI);
         map.put(KeyCode.UP, Stefna.UPP);
@@ -63,33 +64,37 @@ public class PacmanController {
         });
     }
 
-    private void setStefna(double d){
+    private void setStefna(double d) {
         maze.setStefna(d);
     }
 
-    public Leikur getLeikur(){
+    public Leikur getLeikur() {
         return leikur;
     }
-    public void leikLokid(){
+
+    public void leikLokid() {
         leikur.leikLokid();
         timeline.stop();
+        //það væri fínt að færa þetta í áfram hjá pac man
         ForsidaController.stopSound();
         Media sound = new Media(new File("src/sounds/Death.mp3").toURI().toString());
         MediaPlayer PacManDo = new MediaPlayer(sound);
         PacManDo.play();
     }
-    public void nyrLeikur(){
+
+    public void nyrLeikur() {
         maze.nyrLeikur();
         timeline.play();
-        maze.pacmanAfram();
     }
-    public void showAlertDialog(){
-        Alert alert = new AlertDialog("","Pac-man", "Þú hefur verið gómaður, vilt þú byrja nýjan leik?");
+
+    public void showAlertDialog() {
+        Alert alert = new AlertDialog("", "Pac-man", "Þú hefur verið gómaður, vilt þú byrja nýjan leik?");
         Optional<ButtonType> b = alert.showAndWait();
-        if(b.isPresent() && !b.get().getButtonData().isCancelButton()){
+        if (b.isPresent() && !b.get().getButtonData().isCancelButton()) {
             nyrLeikur();
         }
     }
+
     public void turnOffMusic(ActionEvent event) {
         ForsidaController.stopSound();
     }
