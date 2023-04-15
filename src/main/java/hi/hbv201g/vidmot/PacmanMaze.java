@@ -9,7 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 public class PacmanMaze extends GridPane {
-    private final String FILE_NAME = "Leikbord.fxml";
+
     private final double[] HOME = {6, 5};
     private final double[] UPPHAFS_PUNKTUR = {0, 0};
     private final double[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
