@@ -1,0 +1,20 @@
+.pinky {
+    -fx-background-image: url("pink.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.inky {
+    -fx-background-image: url("cyan.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.blinky {
+    -fx-background-image: url("redghost.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.clyde {
+    -fx-background-image: url("yellowghost.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
