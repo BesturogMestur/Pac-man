@@ -3,7 +3,6 @@ package hi.hbv201g.vidmot;
 import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -14,21 +13,7 @@ public class PacmanMaze extends GridPane {
     private final double[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
     private final double[] BLINKY_HOME = {getColumnCount(), 0};
     private final double[] CLYDE_HOME = {0, getRowCount()};
-    private final boolean[][] MAZE = {{false, false, false, false, false, false, false, false, false, false, false,
-            false, false},
-            {false, true, true, true, true, true, true, true, true, true, true, true, false},
-            {false, true, false, false, false, false, true, false, false, false, false, true, false},
-            {false, true, false, true, true, true, true, true, true, true, false, true, false},
-            {false, true, false, true, false, false, false, false, false, true, false, true, false},
-            {false, true, true, true, true, true, true, true, true, true, true, true, false},
-            {false, true, false, true, false, false, false, false, false, true, false, true, false},
-            {true, true, false, true, false, false, false, false, false, true, false, true, true},
-            {false, true, false, true, false, false, false, false, false, true, false, true, false},
-            {false, true, true, true, false, false, false, false, false, true, true, true, false},
-            {false, true, false, true, true, true, true, true, true, true, false, true, false},
-            {false, true, false, true, false, false, false, false, false, true, false, true, false},
-            {false, true, true, true, true, true, true, true, true, true, true, true, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false}};
+    private boolean[][] maze;
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
@@ -44,13 +29,30 @@ public class PacmanMaze extends GridPane {
 
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
-       // this.pacmanController = pacmanController;
+        // this.pacmanController = pacmanController;
+        setMaze();
         nyrLeikur();
+    }
+
+    private void setMaze() {
+        maze = new boolean[getColumnCount()][getRowCount()];
+        for (int i = 0; i < getColumnCount(); i++) {
+            for (int j = 0; j < getRowCount(); j++) {
+                maze[i][j] = true;
+            }
+        }
+        for (Node child : getChildren()) {
+            if (child instanceof Veggur) {
+                int i = getColumnIndex(child);
+                int j = getRowIndex(child);
+                maze[i][j] = false;
+            }
+        }
     }
 
     public void nyrLeikur() {
         fxPacman = new Pacman();
-        setConstraints(fxPacman,1,1);
+        setConstraints(fxPacman, 1, 1);
         timi = TIMAR[havdaTimi];
         setDraugar();
         setPellets();
@@ -65,23 +67,23 @@ public class PacmanMaze extends GridPane {
     }
 
     public void setPellets() {
-        for (int i = 1; i < MAZE.length - 1; i++) {
-            for (int j = 1; j < MAZE.length - 1; j++) {
-                if (MAZE[i][j]) {
+        for (int i = 1; i < maze.length - 1; i++) {
+            for (int j = 1; j < maze.length - 1; j++) {
+                if (maze[i][j]) {
                     Pellets p = new Pellets();
                     pellets.add(p);
-                    setConstraints(p,i,j);
+                    setConstraints(p, i, j);
                 }
             }
         }
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman),this);
+        fxPacman.afarm(walls(fxPacman), this);
     }
 
-    public void faeraPcak(double a, double b){
-        setConstraints(fxPacman,(int)(getColumnIndex(fxPacman)+a),(int)(getRowIndex(fxPacman)+b));
+    public void faeraPcak(double a, double b) {
+        setConstraints(fxPacman, (int) (getColumnIndex(fxPacman) + a), (int) (getRowIndex(fxPacman) + b));
     }
 
     public void aframDraugar() {
@@ -112,12 +114,12 @@ public class PacmanMaze extends GridPane {
         }
 
 
-        d.afarm(walls(d),this);
+        d.afarm(walls(d), this);
         athugaPacman(d);
     }
 
-    public void fearDrauga(double a, double b, Draugar d){
-        setConstraints(d,(int)(getColumnIndex(d)+a),(int)(getRowIndex(d)+b));
+    public void fearDrauga(double a, double b, Draugar d) {
+        setConstraints(d, (int) (getColumnIndex(d) + a), (int) (getRowIndex(d) + b));
     }
 
     private boolean[] walls(Node n) {
@@ -129,16 +131,16 @@ public class PacmanMaze extends GridPane {
         for (int i = 0; i < walls.length; i++) {
             if (i % 2 == 0) {
                 if (i == 0) {
-                    walls[i] = MAZE[a[0] + 1][a[1]];
+                    walls[i] = maze[a[0] + 1][a[1]];
                 } else {
-                    walls[i] = MAZE[a[0] - 1][a[1]];
+                    walls[i] = maze[a[0] - 1][a[1]];
                 }
 
             } else {
                 if (i == 1) {
-                    walls[i] = MAZE[a[0]][a[1] + 1];
+                    walls[i] = maze[a[0]][a[1] + 1];
                 } else {
-                    walls[i] = MAZE[a[0]][a[1] - 1];
+                    walls[i] = maze[a[0]][a[1] - 1];
                 }
             }
         }
