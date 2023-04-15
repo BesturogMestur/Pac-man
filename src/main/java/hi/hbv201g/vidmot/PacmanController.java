@@ -73,6 +73,7 @@ public class PacmanController {
     public void leikLokid(){
         leikur.leikLokid();
         timeline.stop();
+        //það væri fínt að færa þetta í áfram hjá pac man
         ForsidaController.stopSound();
         Media sound = new Media(new File("src/sounds/Death.mp3").toURI().toString());
         MediaPlayer PacManDo = new MediaPlayer(sound);
