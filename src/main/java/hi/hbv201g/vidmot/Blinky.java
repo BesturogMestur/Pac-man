@@ -1,4 +1,4 @@
-package hi.hbv201g.vinnsla;
+package hi.hbv201g.vidmot;
 
 import hi.hbv201g.vidmot.Draugar;
 import hi.hbv201g.vidmot.FXMLLoder;
@@ -8,6 +8,7 @@ public class Blinky extends Draugar {
     private final double[] HOME_BASE;
     public Blinky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
         super(p, a, b, home);
+        //FXMLLoder loder=new FXMLLoder(this,"Draugar.fxml");
         HOME_BASE=homeBase;
     }
     public double drauaReikniritd (double[] a) {

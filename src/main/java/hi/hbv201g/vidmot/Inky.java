@@ -1,5 +1,6 @@
-package hi.hbv201g.vinnsla;
+package hi.hbv201g.vidmot;
 
+import hi.hbv201g.vidmot.Blinky;
 import hi.hbv201g.vidmot.Draugar;
 import hi.hbv201g.vidmot.Pacman;
 import hi.hbv201g.vidmot.Stefna;

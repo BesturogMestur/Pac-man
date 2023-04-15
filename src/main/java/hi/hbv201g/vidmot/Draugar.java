@@ -81,6 +81,15 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return reknirit(a, p.Hnit());
     }
 
+    /**
+     * Hér er reikan út fjarlæðin í hornið sem á hvrðið drugur hefur með
+     * því að taka inn stað setinu drusin og serð setinu hornið sem
+     * daurgurinn á.
+     *
+     * @param a x, y stað setining á drauginum
+     * @param homeBase x, y stað setining á horninu
+     * @return frjarlæð í homeBase
+     */
     public double ToHomeBaes(double[] a, double[] homeBase) {
         return reknirit(a, homeBase);
     }

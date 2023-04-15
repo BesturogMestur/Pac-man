@@ -1,6 +1,5 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vinnsla.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
