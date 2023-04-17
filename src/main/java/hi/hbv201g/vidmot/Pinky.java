@@ -22,7 +22,7 @@ public class Pinky extends Draugar {
                 } else {
                     stefna[0] += 4;
                 }
-                return ToPac(a, sc);
+                return reknirit(a,stefna);
             } else {
                 return ToHomeBaes(a, HOME_BASE);
             }
