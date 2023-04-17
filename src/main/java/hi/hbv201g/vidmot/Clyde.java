@@ -12,13 +12,24 @@ public class Clyde extends Draugar {
         if (!etan) {
             if (elta) {
                 int[] stefna = p.Hnit(sc);
+                int[] stadSeting =this.Hnit(sc);
                 int[] radius = new int[2];
                 for (int i = 0; i < radius.length; i++) {
-                    radius[i] = stefna[i] - a[i];
+                    radius[i] = stefna[i] - stadSeting[i];
+                    if(radius[i]<0){
+                        radius[i]*=-1;
+                    }
                 }
-                if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
+                if (Math.pow(radius[0], 2) + Math.pow(radius[1], 2) <= 8) {
+                    return ToHomeBaes(a, HOME_BASE);
+
+                } else if (radius[0] == 0 && radius[0] + Math.pow(radius[1], 2) <= 8) {
+                    return ToHomeBaes(a, HOME_BASE);
+
+                } else if (radius[1] == 0 && radius[1] + Math.pow(radius[0], 2) <= 8) {
                     return ToHomeBaes(a, HOME_BASE);
                 }
+
                 return ToPac(a, sc);
             } else {
                 return ToHomeBaes(a, HOME_BASE);

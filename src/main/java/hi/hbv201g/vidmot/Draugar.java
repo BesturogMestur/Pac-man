@@ -148,15 +148,15 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public int[] piontOfColuslson(int[] a, int i) {
         if (i % 2 == 0) {
             if (i == 0) {
-                a[1] += 1;
-            } else {
                 a[1] -= 1;
+            } else {
+                a[1] += 1;
             }
         } else {
             if (i > 1) {
-                a[0] += 1;
-            } else {
                 a[0] -= 1;
+            } else {
+                a[0] += 1;
             }
         }
         return a;
