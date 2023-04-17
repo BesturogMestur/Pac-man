@@ -125,7 +125,24 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      * @return
      */
     public int reknirit(int[] d, int[] stefna) {
-        return (int) (Math.pow(d[0] - stefna[0], 2) + Math.pow(d[0] - stefna[0], 2));
+        double x = d[0] - stefna[0];
+        double y = d[1] - stefna[1];
+        int a = (int)x;
+        int b = (int)y;
+        if (x != 0) {
+            if(x<0){
+                x*=-1;
+            }
+            a = (int) Math.pow(x, 2);
+        }
+        if (y != 0) {
+            if(y<0){
+                y*=-1;
+            }
+            b = (int) Math.pow(y, 2);
+        }
+        int sum = a + b;
+        return sum;
     }
 
     public int[] piontOfColuslson(int[] a, int i) {
