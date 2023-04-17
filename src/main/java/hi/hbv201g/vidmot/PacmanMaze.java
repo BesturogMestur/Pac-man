@@ -12,11 +12,11 @@ import javafx.scene.paint.Paint;
 
 public class PacmanMaze extends GridPane {
 
-    private final double[] HOME = {6, 5};
-    private final double[] UPPHAFS_PUNKTUR = {0, 0};
-    private final double[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
-    private final double[] BLINKY_HOME = {getColumnCount(), 0};
-    private final double[] CLYDE_HOME = {0, getRowCount()};
+    private final int[] HOME = {6, 5};
+    private final int[] UPPHAFS_PUNKTUR = {0, 0};
+    private final int[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
+    private final int[] BLINKY_HOME = {getColumnCount(), 0};
+    private final int[] CLYDE_HOME = {0, getRowCount()};
     private boolean[][] maze;
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;

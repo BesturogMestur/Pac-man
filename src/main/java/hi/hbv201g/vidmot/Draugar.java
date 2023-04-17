@@ -10,14 +10,13 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     protected boolean etan = false;
     protected boolean hraedir = false;
     private final int OFFSET = 1;
-    private Random random;
     private final double MAX_LEND;
-    private final double[] HOME;
+    private final int[] HOME;
 
-    public abstract double drauaReikniritd(double[] a);
+    public abstract double drauaReikniritd(int[] a, PacmanMaze sc);
 
-    public Draugar(Pacman p, double[] a, double[] b, double[] home) {
-        FXMLLoder loder=new FXMLLoder(this,"Draugar.fxml");
+    public Draugar(Pacman p, int[] a, int[] b, int[] home) {
+        FXMLLoder loder = new FXMLLoder(this, "Draugar.fxml");
         this.p = p;
         MAX_LEND = reknirit(a, b);
         HOME = home;
@@ -77,8 +76,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      * @param a staðsetin draugsins
      * @return frlæðina í pac
      */
-    public double ToPac(double[] a) {
-        return reknirit(a, p.Hnit());
+    public int ToPac(int[] a, PacmanMaze sc) {
+        return reknirit(a, p.Hnit(sc));
     }
 
     /**
@@ -86,11 +85,11 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      * því að taka inn stað setinu drusin og serð setinu hornið sem
      * daurgurinn á.
      *
-     * @param a x, y stað setining á drauginum
+     * @param a        x, y stað setining á drauginum
      * @param homeBase x, y stað setining á horninu
      * @return frjarlæð í homeBase
      */
-    public double ToHomeBaes(double[] a, double[] homeBase) {
+    public int ToHomeBaes(int[] a, int[] homeBase) {
         return reknirit(a, homeBase);
     }
 
@@ -101,7 +100,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      * @param a er stað setingin á drauginum
      * @return frækaðin í drauga bælið
      */
-    public double home(double[] a) {
+    public int home(int[] a) {
         return reknirit(a, HOME);
     }
 
@@ -110,25 +109,26 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      *
      * @return filki sem inni heldur x og y hnit drausins
      */
-    public double[] Hnit() {
-        double[] a = new double[2];
-        a[0] = getCenterX();
-        a[1] = getCenterY();
+    public int[] Hnit(PacmanMaze sc) {
+        int[] a = new int[2];
+        a[0] = sc.getColumnIndex(this);
+        a[1] = sc.getRowIndex(this);
         return a;
     }
 
     /**
      * hér er reiknitritið sem fem reiknar út frlæðinar á milli tvegja
      * staðsetinat og sem eru gefnar með fylkum.
+     *
      * @param d
      * @param stefna
      * @return
      */
-    public int reknirit(double[] d, double[] stefna) {
+    public int reknirit(int[] d, int[] stefna) {
         return (int) (Math.pow(d[0] - stefna[0], 2) + Math.pow(d[0] - stefna[0], 2));
     }
 
-    public double[] piontOfColuslson(double[] a, int i) {
+    public int[] piontOfColuslson(int[] a, int i) {
         if (i % 2 == 0) {
             if (i == 0) {
                 a[1] += 1;
@@ -146,8 +146,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     }
 
     private void direson(PacmanMaze sc) {
-        double a = getCenterX() + Math.cos(Math.toRadians(getRotate())) * OFFSET;
-        double b = getCenterY() + Math.sin(Math.toRadians(getRotate())) * OFFSET;
+        double a = Math.cos(Math.toRadians(getRotate())) * OFFSET;
+        double b = Math.sin(Math.toRadians(getRotate())) * OFFSET;
         sc.fearDrauga(a, b, this);
     }
 
@@ -155,7 +155,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public void afarm(boolean[] path, PacmanMaze sc) {
         double bakvid = turnAround();
         double minLend = MAX_LEND;
-        double lend = minLend;
+        double lend;
+        Random random = new Random();
 
         if (hraedir) {
             setRotate(random.nextInt(4));
@@ -174,9 +175,9 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
                 double att = (90 + (90 * i)) % 360;
 
                 if (bakvid != att && path[i]) {
-                    double[] maeliStadur = Hnit();
+                    int[] maeliStadur = Hnit(sc);
                     maeliStadur = piontOfColuslson(maeliStadur, i);
-                    lend = drauaReikniritd(maeliStadur);
+                    lend = drauaReikniritd(maeliStadur, sc);
 
                     if (lend < minLend) {
                         minLend = lend;

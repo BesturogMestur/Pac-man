@@ -1,25 +1,20 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vidmot.Blinky;
-import hi.hbv201g.vidmot.Draugar;
-import hi.hbv201g.vidmot.Pacman;
-import hi.hbv201g.vidmot.Stefna;
-
 public class Inky extends Draugar {
-    private final double[] HOME_BASE;
+    private final int[] HOME_BASE;
     private Blinky blinky;
 
-    public Inky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase, Blinky blinky) {
+    public Inky(Pacman p, int[] a, int[] b, int[] home, int[] homeBase, Blinky blinky) {
         super(p, a, b, home);
         this.blinky = blinky;
         HOME_BASE = homeBase;
 
     }
 
-    public double drauaReikniritd(double[] a) {
+    public double drauaReikniritd(int[] a, PacmanMaze sc) {
         if (!etan) {
             if (elta) {
-                double[] stefna = p.Hnit();
+                int[] stefna = p.Hnit(sc);
                 double att = p.getStefna() / 90;
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 2;
@@ -30,7 +25,7 @@ public class Inky extends Draugar {
                 } else {
                     stefna[0] += 2;
                 }
-                double[] d = blinky.Hnit();
+                int[] d = blinky.Hnit(sc);
                 double[] mismunnur = new double[2];
                 for (int i = 0; i < mismunnur.length; i++) {
                     mismunnur[i] = stefna[i] - d[i];
@@ -40,7 +35,7 @@ public class Inky extends Draugar {
                 }
                 return reknirit(a, stefna);
             } else {
-                return ToHomeBaes(a,HOME_BASE);
+                return ToHomeBaes(a, HOME_BASE);
             }
 
         } else {
