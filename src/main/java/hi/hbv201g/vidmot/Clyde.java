@@ -1,29 +1,38 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vidmot.Draugar;
-import hi.hbv201g.vidmot.Pacman;
-
 public class Clyde extends Draugar {
-    private final double[] HOME_BASE;
-    public Clyde(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
+    private final int[] HOME_BASE;
+
+    public Clyde(Pacman p, int[] a, int[] b, int[] home, int[] homeBase) {
         super(p, a, b, home);
-        HOME_BASE=homeBase;
+        HOME_BASE = homeBase;
     }
 
-    public double drauaReikniritd(double[] a) {
+    public double drauaReikniritd(int[] a, PacmanMaze sc) {
         if (!etan) {
             if (elta) {
-                double[] stefna = p.Hnit();
-                double[] radius = new double[2];
+                int[] stefna = p.Hnit(sc);
+                int[] stadSeting =this.Hnit(sc);
+                int[] radius = new int[2];
                 for (int i = 0; i < radius.length; i++) {
-                    radius[i] = stefna[i] - a[i];
+                    radius[i] = stefna[i] - stadSeting[i];
+                    if(radius[i]<0){
+                        radius[i]*=-1;
+                    }
                 }
-                if (Math.pow(radius[0], 2) + Math.pow(radius[0], 2) <= 8) {
-                    return ToHomeBaes(a,HOME_BASE);
+                if (Math.pow(radius[0], 2) + Math.pow(radius[1], 2) <= 8) {
+                    return ToHomeBaes(a, HOME_BASE);
+
+                } else if (radius[0] == 0 && radius[0] + Math.pow(radius[1], 2) <= 8) {
+                    return ToHomeBaes(a, HOME_BASE);
+
+                } else if (radius[1] == 0 && radius[1] + Math.pow(radius[0], 2) <= 8) {
+                    return ToHomeBaes(a, HOME_BASE);
                 }
-                return ToPac(a);
+
+                return ToPac(a, sc);
             } else {
-                return ToHomeBaes(a,HOME_BASE);
+                return ToHomeBaes(a, HOME_BASE);
             }
 
 

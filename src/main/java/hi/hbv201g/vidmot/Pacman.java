@@ -9,10 +9,10 @@ public class Pacman extends Circle implements Afarm, Hnit {
         FXMLLoder loader = new FXMLLoder(this, "Pac-man.fxml");
     }
 
-    public double[] Hnit() {
-        double[] a = new double[2];
-        a[0] = getCenterX();
-        a[1] = getCenterY();
+    public int[] Hnit(PacmanMaze sc) {
+        int[] a = new int[2];
+        a[0] = sc.getColumnIndex(this);
+        a[1] = sc.getRowIndex(this);
         return a;
     }
 

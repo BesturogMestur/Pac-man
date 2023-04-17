@@ -1,22 +1,19 @@
 package hi.hbv201g.vidmot;
 
-import hi.hbv201g.vidmot.Draugar;
-import hi.hbv201g.vidmot.FXMLLoder;
-import hi.hbv201g.vidmot.Pacman;
-
 public class Blinky extends Draugar {
-    private final double[] HOME_BASE;
-    public Blinky(Pacman p, double[] a, double[] b, double[] home, double[] homeBase) {
+    private final int[] HOME_BASE;
+
+    public Blinky(Pacman p, int[] a, int[] b, int[] home, int[] homeBase) {
         super(p, a, b, home);
-        //FXMLLoder loder=new FXMLLoder(this,"Draugar.fxml");
-        HOME_BASE=homeBase;
+        HOME_BASE = homeBase;
     }
-    public double drauaReikniritd (double[] a) {
+
+    public double drauaReikniritd(int[] a, PacmanMaze sc) {
         if (!etan) {
             if (elta) {
-                return ToPac(a);
+                return ToPac(a, sc);
             } else {
-                return ToHomeBaes(a,HOME_BASE);
+                return ToHomeBaes(a, HOME_BASE);
             }
 
         } else {
