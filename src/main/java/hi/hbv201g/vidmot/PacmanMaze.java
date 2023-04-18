@@ -22,7 +22,7 @@ public class PacmanMaze extends GridPane {
     private int havdaTimi = 0;
     private int timi;
     @FXML
-    private Pacman fxPacman;
+    Pacman fxPacman;
     private Blinky blinky;
     private Inky inky;
     private Pinky pinky;
@@ -106,6 +106,7 @@ public class PacmanMaze extends GridPane {
      */
     public void setStefna(Double d) {
         fxPacman.setRotate(d);
+        //System.out.println(fxPacman.getRotate());
     }
 
     public void pacmanAfram() {

@@ -27,8 +27,17 @@ public class Pacman extends Circle implements Afarm, Hnit {
             att = 360;
         }
         if (path[(int) (att / 90) - 1]) {
-            int a = (int) (Math.cos(Math.toRadians(getRotate())) * OFFSET);
-            int b = (int) (Math.sin(Math.toRadians(getRotate())) * OFFSET);
+            int a = 0;
+            int b = 0;
+            if (getRotate() == 90) {
+                b-=1;
+            } else if (getRotate() == 180) {
+                a -= 1;
+            } else if (getRotate() == 270) {
+                b += 1;
+            } else {
+                a += 1;
+            }
 
             sc.faeraPcak(a, b);
         }
