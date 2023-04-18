@@ -143,7 +143,6 @@ public class PacmanMaze extends GridPane {
             d.setRotate(Stefna.UPP.getGradur());
         }
 
-
         d.afarm(walls(d), this);
         athugaPacman(d, sc);
     }
