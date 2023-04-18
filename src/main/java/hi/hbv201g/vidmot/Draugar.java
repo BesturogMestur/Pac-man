@@ -126,22 +126,20 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      */
     public int reknirit(int[] d, int[] stefna) {
         double x = d[0] - stefna[0];
-        double y = d[1] - stefna[1];
-        int a = (int)x;
-        int b = (int)y;
+        double y = (d[1] - stefna[1]);
         if (x != 0) {
             if(x<0){
                 x*=-1;
             }
-            a = (int) Math.pow(x, 2);
+            x = Math.pow(x, 2);
         }
         if (y != 0) {
             if(y<0){
                 y*=-1;
             }
-            b = (int) Math.pow(y, 2);
+            y = Math.pow(y, 2);
         }
-        int sum = a + b;
+        int sum = (int) (x + y);
         return sum;
     }
 
@@ -163,8 +161,18 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     }
 
     private void direson(PacmanMaze sc) {
-        double a = Math.cos(Math.toRadians(getRotate())) * OFFSET;
-        double b = Math.sin(Math.toRadians(getRotate())) * OFFSET;
+            int a = 0;
+            int b = 0;
+            if (getRotate() == 90) {
+                b-=1;
+            } else if (getRotate() == 180) {
+                a -= 1;
+            } else if (getRotate() == 270) {
+                b += 1;
+            } else {
+                a += 1;
+            }
+
         sc.fearDrauga(a, b, this);
     }
 
