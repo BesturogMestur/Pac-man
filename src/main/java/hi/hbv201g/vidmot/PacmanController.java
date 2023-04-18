@@ -38,7 +38,7 @@ public class PacmanController {
     public void byrjaLeik() {
         KeyFrame k = new KeyFrame(Duration.millis(100.0),
                 e -> {
-                    maze.pacmanAfram();
+                    //maze.pacmanAfram();
                     //maze.bordaPellets(this);
                     //maze.aframDraugar(this);
 
@@ -66,6 +66,7 @@ public class PacmanController {
 
     private void setStefna(double d) {
         maze.setStefna(d);
+        maze.pacmanAfram();
     }
 
     public Leikur getLeikur() {

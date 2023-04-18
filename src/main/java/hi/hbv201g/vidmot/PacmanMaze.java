@@ -8,7 +8,6 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 public class PacmanMaze extends GridPane {
 
@@ -17,7 +16,20 @@ public class PacmanMaze extends GridPane {
     private final int[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
     private final int[] BLINKY_HOME = {getColumnCount(), 0};
     private final int[] CLYDE_HOME = {0, getRowCount()};
-    private boolean[][] maze;
+    private boolean[][] maze = {
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            {false, true, true, true, true, true, true, true, true, true, true, true, true, false},
+            {false, true, false, false, false, true, false, false, false, true, false, false, true, false},
+            {false, true, false, true, true, true, true, true, true, true, true, true, true, false},
+            {false, true, false, true, false, true, false, false, false, false, true, false, true, false},
+            {false, true, false, true, false, true, false, true, true, false, true, false, true, false},
+            {false, true, true, true, false, true, false, true, true, false, true, false, true, false},
+            {false, true, false, true, false, true, false, true, true, false, true, false, true, false},
+            {false, true, false, true, false, true, false, false, false, false, true, false, true, false},
+            {false, true, false, true, true, true, true, true, true, true, true, true, true, false},
+            {false, true, false, false, false, true, false, false, false, true, false, false, true, false},
+            {false, true, true, true, true, true, true, true, true, true, true, true, true, false},
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false}};
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
@@ -31,7 +43,7 @@ public class PacmanMaze extends GridPane {
 
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
-        setMaze();
+        //setMaze();
         nyrLeikur();
     }
 
@@ -55,7 +67,7 @@ public class PacmanMaze extends GridPane {
         setPecman(6, 10);
         timi = TIMAR[havdaTimi];
         setDraugar();
-        setPellets();
+        //setPellets();
 
     }
 
@@ -110,7 +122,7 @@ public class PacmanMaze extends GridPane {
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman), this);
+        fxPacman.afarm(walls(fxPacman.Hnit()));
     }
 
     public void faeraPcak(int a, int b) {
@@ -128,9 +140,7 @@ public class PacmanMaze extends GridPane {
     }
 
     private void aframDurgar(Draugar d, PacmanController sc) {
-        int[] a = new int[2];
-        a[0] = getColumnIndex(d);
-        a[1] = getRowIndex(d);
+        int[] a = d.Hnit();
 
         if (timi <= 0) {
             if (d.elta) {
@@ -141,37 +151,31 @@ public class PacmanMaze extends GridPane {
         }
         if (a[0] == 6 && a[1] == 5) {
             d.setEtan(false);
-            d.setRotate(Stefna.UPP.getGradur());
+            d.setRotate(90);
         }
 
 
-        d.afarm(walls(d), this);
-        athugaPacman(d, sc);
+        d.afarm(walls(d.Hnit()));
+        athugaPacman(d,sc);
     }
 
-    public void fearDrauga(double a, double b, Draugar d) {
-        setConstraints(d, (int) (getColumnIndex(d) + a), (int) (getRowIndex(d) + b));
-    }
 
-    private boolean[] walls(Node n) {
-        int[] a = new int[2];
+    private boolean[] walls(int[] a) {
         boolean[] walls = new boolean[4];
-        a[0] = getColumnIndex(n);
-        a[1] = getRowIndex(n);
 
         for (int i = 0; i < walls.length; i++) {
             if (i % 2 == 0) {
                 if (i == 0) {
-                    walls[i] = maze[a[0]][a[1] + 1];
-                } else {
                     walls[i] = maze[a[0]][a[1] - 1];
+                } else {
+                    walls[i] = maze[a[0]][a[1] + 1];
                 }
 
             } else {
                 if (i == 1) {
-                    walls[i] = maze[a[0] + 1][a[1]];
-                } else {
                     walls[i] = maze[a[0] - 1][a[1]];
+                } else {
+                    walls[i] = maze[a[0] + 1][a[1]];
                 }
             }
         }

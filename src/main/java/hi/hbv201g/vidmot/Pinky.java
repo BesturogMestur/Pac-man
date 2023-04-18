@@ -8,10 +8,10 @@ public class Pinky extends Draugar {
         HOME_BASE = homeBase;
     }
 
-    public double drauaReikniritd(int[] a, PacmanMaze sc) {
+    public double drauaReikniritd(int[] a) {
         if (!etan) {
             if (elta) {
-                int[] stefna = p.Hnit(sc);
+                int[] stefna = p.Hnit();
                 double att = p.getStefna();
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 4;

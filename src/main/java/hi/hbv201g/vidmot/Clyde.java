@@ -8,11 +8,11 @@ public class Clyde extends Draugar {
         HOME_BASE = homeBase;
     }
 
-    public double drauaReikniritd(int[] a, PacmanMaze sc) {
+    public double drauaReikniritd(int[] a) {
         if (!etan) {
             if (elta) {
-                int[] stefna = p.Hnit(sc);
-                int[] stadSeting =this.Hnit(sc);
+                int[] stefna = p.Hnit();
+                int[] stadSeting =this.Hnit();
                 int[] radius = new int[2];
                 for (int i = 0; i < radius.length; i++) {
                     radius[i] = stefna[i] - stadSeting[i];
@@ -30,7 +30,7 @@ public class Clyde extends Draugar {
                     return ToHomeBaes(a, HOME_BASE);
                 }
 
-                return ToPac(a, sc);
+                return ToPac(a);
             } else {
                 return ToHomeBaes(a, HOME_BASE);
             }

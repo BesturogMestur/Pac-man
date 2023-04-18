@@ -9,10 +9,10 @@ public class Pacman extends Circle implements Afarm, Hnit {
         FXMLLoder loader = new FXMLLoder(this, "Pac-man.fxml");
     }
 
-    public int[] Hnit(PacmanMaze sc) {
-        int[] a = new int[2];
-        a[0] = sc.getColumnIndex(this);
-        a[1] = sc.getRowIndex(this);
+    public int[] Hnit() {
+        int[]a=new int[2];
+        a[0]=(int)getCenterX();
+        a[1]= (int)getCenterY();
         return a;
     }
 
@@ -21,25 +21,24 @@ public class Pacman extends Circle implements Afarm, Hnit {
     }
 
     @Override
-    public void afarm(boolean[] path, PacmanMaze sc) {
+    public void afarm(boolean[] path) {
         double att = getStefna() - 90;
         if (att < 0) {
             att = 360;
         }
         if (path[(int) (att / 90) - 1]) {
-            int a = 0;
-            int b = 0;
-            if (getRotate() == 90) {
-                b-=1;
-            } else if (getRotate() == 180) {
-                a -= 1;
-            } else if (getRotate() == 270) {
-                b += 1;
-            } else {
-                a += 1;
-            }
 
-            sc.faeraPcak(a, b);
+            if (getRotate() == 90) {
+                setCenterY(getCenterY() - 1);
+            } else if (getRotate() == 180) {
+                setCenterX(getCenterX() - 1);
+            } else if (getRotate() == 270) {
+                setCenterY(getCenterY() + 1);
+            } else {
+                setCenterX(getCenterX() + 1);
+            }
         }
+
     }
 }
+

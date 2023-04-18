@@ -11,10 +11,10 @@ public class Inky extends Draugar {
 
     }
 
-    public double drauaReikniritd(int[] a, PacmanMaze sc) {
+    public double drauaReikniritd(int[] a) {
         if (!etan) {
             if (elta) {
-                int[] stefna = p.Hnit(sc);
+                int[] stefna = p.Hnit();
                 double att = p.getStefna() / 90;
                 if (att == Stefna.UPP.getGradur()) {
                     stefna[1] += 2;
@@ -25,7 +25,7 @@ public class Inky extends Draugar {
                 } else {
                     stefna[0] += 2;
                 }
-                int[] d = blinky.Hnit(sc);
+                int[] d = blinky.Hnit();
                 double[] mismunnur = new double[2];
                 for (int i = 0; i < mismunnur.length; i++) {
                     mismunnur[i] = stefna[i] - d[i];

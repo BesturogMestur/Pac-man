@@ -13,7 +13,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     private final double MAX_LEND;
     private final int[] HOME;
 
-    public abstract double drauaReikniritd(int[] a, PacmanMaze sc);
+    public abstract double drauaReikniritd(int[] a);
 
     public Draugar(Pacman p, int[] a, int[] b, int[] home) {
         FXMLLoder loder = new FXMLLoder(this, "Draugar.fxml");
@@ -76,8 +76,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      * @param a staðsetin draugsins
      * @return frlæðina í pac
      */
-    public int ToPac(int[] a, PacmanMaze sc) {
-        return reknirit(a, p.Hnit(sc));
+    public int ToPac(int[] a) {
+        return reknirit(a, p.Hnit());
     }
 
     /**
@@ -109,10 +109,10 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
      *
      * @return filki sem inni heldur x og y hnit drausins
      */
-    public int[] Hnit(PacmanMaze sc) {
-        int[] a = new int[2];
-        a[0] = sc.getColumnIndex(this);
-        a[1] = sc.getRowIndex(this);
+    public int[] Hnit() {
+        int[]a=new int[2];
+        a[0]=(int)getCenterX();
+        a[1]= (int)getCenterY();
         return a;
     }
 
@@ -160,24 +160,20 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
         return a;
     }
 
-    private void direson(PacmanMaze sc) {
-            int a = 0;
-            int b = 0;
-            if (getRotate() == 90) {
-                b-=1;
-            } else if (getRotate() == 180) {
-                a -= 1;
-            } else if (getRotate() == 270) {
-                b += 1;
-            } else {
-                a += 1;
-            }
-
-        sc.fearDrauga(a, b, this);
+    private void direson() {
+        if (getRotate() == 90) {
+            setCenterY(getCenterY() - 1);
+        } else if (getRotate() == 180) {
+            setCenterX(getCenterX() - 1);
+        } else if (getRotate() == 270) {
+            setCenterY(getCenterY() + 1);
+        } else {
+            setCenterX(getCenterX() + 1);
+        }
     }
 
     @Override
-    public void afarm(boolean[] path, PacmanMaze sc) {
+    public void afarm(boolean[] path) {
         double bakvid = turnAround();
         double minLend = MAX_LEND;
         double lend;
@@ -194,15 +190,15 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
                     }
                 }
             }
-            direson(sc);
+            direson();
         } else {
             for (int i = 0; i < 4; i++) {
                 double att = (90 + (90 * i)) % 360;
 
                 if (bakvid != att && path[i]) {
-                    int[] maeliStadur = Hnit(sc);
+                    int[] maeliStadur = Hnit();
                     maeliStadur = piontOfColuslson(maeliStadur, i);
-                    lend = drauaReikniritd(maeliStadur, sc);
+                    lend = drauaReikniritd(maeliStadur);
 
                     if (lend < minLend) {
                         minLend = lend;
@@ -210,7 +206,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
                     }
                 }
             }
-            direson(sc);
+            direson();
         }
     }
 }
