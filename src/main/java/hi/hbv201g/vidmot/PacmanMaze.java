@@ -155,6 +155,7 @@ public class PacmanMaze extends GridPane {
         }
 
 
+
         d.afarm(walls(d.Hnit()));
         athugaPacman(d,sc);
     }

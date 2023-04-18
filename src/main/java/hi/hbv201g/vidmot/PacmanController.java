@@ -49,6 +49,7 @@ public class PacmanController {
         timeline.play();
 
     }
+    
 
     public void orvatakkar() {
         map.put(KeyCode.RIGHT, Stefna.HAEGRI);
@@ -58,6 +59,7 @@ public class PacmanController {
         fxStig.getScene().addEventFilter(KeyEvent.ANY, event -> {
             try {
                 this.setStefna(map.get(event.getCode()).getGradur());
+                //PacmanMaze.pacamanAfram();
             } catch (NullPointerException e) {
                 event.consume();
             }
