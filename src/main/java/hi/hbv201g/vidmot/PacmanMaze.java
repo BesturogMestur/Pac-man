@@ -24,8 +24,8 @@ public class PacmanMaze extends Pane {
             {false, true, false, false, false, true, false, false, false, true, false, false, true, false},
             {false, true, true, true, true, true, true, true, true, true, true, true, true, false},
             {false, false, false, false, false, false, false, false, false, false, false, false, false, false}};
-    private final int MAX_ROW=13;
-    private final int MAX_COL=14;
+    private final int MAX_ROW=14;
+    private final int MAX_COL=13;
     private final int[] HOME = {6, 5};
     private final int[] UPPHAFS_PUNKTUR = {0, 0};
     private final int[] MESTA_LEGNT_FRA_UPPHAF = {MAX_ROW,MAX_COL};
@@ -51,8 +51,8 @@ public class PacmanMaze extends Pane {
     }
 
     private void setMaze() {
-        for(int j=0;j<13;j++){
-            for (int i = 0; i<14;i++){
+        for(int j=0;j<MAX_ROW;j++){
+            for (int i = 0; i<MAX_COL;i++){
                 if(!maze[i][j]){
                     Veggur v = new Veggur();
                     getChildren().add(v);
@@ -60,8 +60,8 @@ public class PacmanMaze extends Pane {
                     v.setWidth(47.0);
                     v.setHeight(31.0);
 
-                    v.setX((i*BREID)+(v.getWidth()/2));
-                    v.setY((j* HIGTH)+(v.getHeight()/2));
+                    v.setX((i*BREID));
+                    v.setY((j* HIGTH));
                 }
             }
         }
@@ -79,8 +79,8 @@ public class PacmanMaze extends Pane {
         fxPacman = new Pacman();
 
         getChildren().add(fxPacman);
-        fxPacman.setCenterX((BREID/2)*x);
-        fxPacman.setCenterY((HIGTH /2)*y);
+        fxPacman.setCenterX(BREID*x);
+        fxPacman.setCenterY(HIGTH*y);
     }
 
     private void setDraugar() {
@@ -88,8 +88,8 @@ public class PacmanMaze extends Pane {
         blinky.getStyleClass().add("redghost.gif");
         blinky.setFill(Color.rgb(255,0,0));
         getChildren().add(blinky);
-        blinky.setCenterX((BREID/2)*1);
-        blinky.setCenterY((HIGTH /2)*1);
+        blinky.setCenterX((BREID)*1);
+        blinky.setCenterY((HIGTH)*1);
 
         inky = new Inky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, MESTA_LEGNT_FRA_UPPHAF, blinky);
         inky.getStyleClass().add("cyan.gif");
@@ -130,7 +130,7 @@ public class PacmanMaze extends Pane {
         fxPacman.afarm(walls(fxPacman.Hnit()));
     }
 
-    
+
 
     public void aframDraugar(PacmanController sc) {
         aframDurgar(blinky, sc);
