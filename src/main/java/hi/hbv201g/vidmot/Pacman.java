@@ -22,8 +22,8 @@ public class Pacman extends Circle implements Afarm, Hnit {
 
     @Override
     public void afarm(boolean[] path) {
-        double att = getStefna() - 90;
-        if (att < 0) {
+        double att = getStefna();
+        if (att <= 0) {
             att = 360;
         }
         if (path[(int) (att / 90) - 1]) {

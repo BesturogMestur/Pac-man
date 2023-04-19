@@ -2,9 +2,9 @@ package hi.hbv201g.vidmot;
 
 public class Inky extends Draugar {
     private final int[] HOME_BASE;
-    private Blinky blinky;
+    private Draugar blinky;
 
-    public Inky(Pacman p, int[] a, int[] b, int[] home, int[] homeBase, Blinky blinky) {
+    public Inky(Pacman p, int[] a, int[] b, int[] home, int[] homeBase, Draugar blinky) {
         super(p, a, b, home);
         this.blinky = blinky;
         HOME_BASE = homeBase;

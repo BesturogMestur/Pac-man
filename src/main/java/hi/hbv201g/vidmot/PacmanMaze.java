@@ -5,17 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-public class PacmanMaze extends GridPane {
+public class PacmanMaze extends Pane {
 
-    private final int[] HOME = {6, 5};
-    private final int[] UPPHAFS_PUNKTUR = {0, 0};
-    private final int[] MESTA_LEGNT_FRA_UPPHAF = {getColumnCount(), getRowCount()};
-    private final int[] BLINKY_HOME = {getColumnCount(), 0};
-    private final int[] CLYDE_HOME = {0, getRowCount()};
     private boolean[][] maze = {
             {false, false, false, false, false, false, false, false, false, false, false, false, false, false},
             {false, true, true, true, true, true, true, true, true, true, true, true, true, false},
@@ -30,35 +24,45 @@ public class PacmanMaze extends GridPane {
             {false, true, false, false, false, true, false, false, false, true, false, false, true, false},
             {false, true, true, true, true, true, true, true, true, true, true, true, true, false},
             {false, false, false, false, false, false, false, false, false, false, false, false, false, false}};
+    private final int MAX_ROW=13;
+    private final int MAX_COL=14;
+    private final int[] HOME = {6, 5};
+    private final int[] UPPHAFS_PUNKTUR = {0, 0};
+    private final int[] MESTA_LEGNT_FRA_UPPHAF = {MAX_ROW,MAX_COL};
+    private final int[] BLINKY_HOME = {MAX_ROW, 0};
+    private final int[] CLYDE_HOME = {0, MAX_COL};
+    private final double BREID=46.1538;
+    private final double HIGTH =28.5714;
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
     @FXML
     Pacman fxPacman;
-    private Blinky blinky;
-    private Inky inky;
-    private Pinky pinky;
-    private Clyde clyde;
+    private Draugar blinky;
+    private Draugar inky;
+    private Draugar pinky;
+    private Draugar clyde;
     private ObservableList<Pellets> pellets = FXCollections.observableArrayList();
 
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
-        //setMaze();
+        setMaze();
         nyrLeikur();
     }
 
     private void setMaze() {
-        maze = new boolean[getColumnCount()][getRowCount()];
-        for (int i = 0; i < getColumnCount(); i++) {
-            for (int j = 0; j < getRowCount(); j++) {
-                maze[i][j] = true;
-            }
-        }
-        for (Node child : getChildren()) {
-            if (child instanceof Veggur) {
-                int i = getColumnIndex(child);
-                int j = getRowIndex(child);
-                maze[i][j] = false;
+        for(int j=0;j<13;j++){
+            for (int i = 0; i<14;i++){
+                if(!maze[i][j]){
+                    Veggur v = new Veggur();
+                    getChildren().add(v);
+
+                    v.setWidth(47.0);
+                    v.setHeight(31.0);
+
+                    v.setX((i*BREID)+(v.getWidth()/2));
+                    v.setY((j* HIGTH)+(v.getHeight()/2));
+                }
             }
         }
     }
@@ -73,18 +77,19 @@ public class PacmanMaze extends GridPane {
 
     private void setPecman(int x, int y) {
         fxPacman = new Pacman();
-        add(fxPacman, x, y);
-        setHalignment(fxPacman, HPos.CENTER);
-        setValignment(fxPacman, VPos.CENTER);
+
+        getChildren().add(fxPacman);
+        fxPacman.setCenterX((BREID/2)*x);
+        fxPacman.setCenterY((HIGTH /2)*y);
     }
 
     private void setDraugar() {
         blinky = new Blinky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, BLINKY_HOME);
         blinky.getStyleClass().add("redghost.gif");
         blinky.setFill(Color.rgb(255,0,0));
-        add(blinky,1,1);
-        setHalignment(blinky,HPos.CENTER);
-        setValignment(blinky,VPos.CENTER);
+        getChildren().add(blinky);
+        blinky.setCenterX((BREID/2)*1);
+        blinky.setCenterY((HIGTH /2)*1);
 
         inky = new Inky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, MESTA_LEGNT_FRA_UPPHAF, blinky);
         inky.getStyleClass().add("cyan.gif");
@@ -96,15 +101,15 @@ public class PacmanMaze extends GridPane {
     }
 
     public void setPellets() {
-        for (int i = 1; i < getColumnCount() - 1; i++) {
-            for (int j = 1; j < getRowCount() - 1; j++) {
-                if (!((i == 5 || i == 6 || i == 7) && (j == 7 || j == 8))) {
+        for (int i = 1; i < MAX_COL - 1; i++) {
+            for (int j = 1; j < MAX_ROW - 1; j++) {
+                if (!((j == 5 || j == 6 || j == 7) && (i == 7 || i == 8))) {
                     if (maze[i][j]) {
                         Pellets p = new Pellets();
                         pellets.add(p);
-                        add(p, i, j);
-                        setHalignment(p, HPos.CENTER);
-                        setValignment(p, VPos.CENTER);
+                        getChildren().add(p);
+                        p.setCenterX((BREID/2)*j);
+                        p.setCenterY((HIGTH/2)*i);
                     }
                 }
             }
@@ -125,9 +130,7 @@ public class PacmanMaze extends GridPane {
         fxPacman.afarm(walls(fxPacman.Hnit()));
     }
 
-    public void faeraPcak(int a, int b) {
-       setConstraints(fxPacman, (getColumnIndex(fxPacman) + a), (getRowIndex(fxPacman) + b));
-    }
+    
 
     public void aframDraugar(PacmanController sc) {
         aframDurgar(blinky, sc);
