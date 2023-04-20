@@ -31,14 +31,13 @@ public class PacmanController {
     public void initialize() {
         leikur = new Leikur();
         fxStig.textProperty().bind(leikur.stiginproperty().asString());
-       // maze = new PacmanMaze();
 
     }
 
     public void byrjaLeik() {
         KeyFrame k = new KeyFrame(Duration.millis(100.0),
                 e -> {
-                    //maze.pacmanAfram();
+                    maze.pacmanAfram();
                     //maze.bordaPellets(this);
                     //maze.aframDraugar(this);
 
@@ -59,7 +58,7 @@ public class PacmanController {
         fxStig.getScene().addEventFilter(KeyEvent.ANY, event -> {
             try {
                 this.setStefna(map.get(event.getCode()).getGradur());
-                //PacmanMaze.pacamanAfram();
+                //this.maze.pacmanAfram();
             } catch (NullPointerException e) {
                 event.consume();
             }
@@ -68,7 +67,7 @@ public class PacmanController {
 
     private void setStefna(double d) {
         maze.setStefna(d);
-        maze.pacmanAfram();
+        //maze.pacmanAfram();
     }
 
     public Leikur getLeikur() {

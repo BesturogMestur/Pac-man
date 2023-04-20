@@ -11,21 +11,21 @@ public class Inky extends Draugar {
 
     }
 
-    public double drauaReikniritd(int[] a) {
+    public double drauaReikniritd(int[] a, PacmanMaze sc) {
         if (!etan) {
             if (elta) {
-                int[] stefna = p.Hnit();
+                int[] stefna = p.hnit(sc);
                 double att = p.getStefna() / 90;
                 if (att == Stefna.UPP.getGradur()) {
-                    stefna[1] += 2;
+                    stefna[1] -= 2;
                 } else if (att == Stefna.VINSTRI.getGradur()) {
                     stefna[0] -= 2;
                 } else if (att == Stefna.NIDUR.getGradur()) {
-                    stefna[1] -= 2;
+                    stefna[1] += 2;
                 } else {
                     stefna[0] += 2;
                 }
-                int[] d = blinky.Hnit();
+                int[] d = blinky.hnit(sc);
                 double[] mismunnur = new double[2];
                 for (int i = 0; i < mismunnur.length; i++) {
                     mismunnur[i] = stefna[i] - d[i];

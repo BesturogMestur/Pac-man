@@ -8,10 +8,10 @@ public class Blinky extends Draugar {
         HOME_BASE = homeBase;
     }
 
-    public double drauaReikniritd(int[] a) {
+    public double drauaReikniritd(int[] a, PacmanMaze sc) {
         if (!etan) {
             if (elta) {
-                return ToPac(a);
+                return ToPac(a,sc);
             } else {
                 return ToHomeBaes(a, HOME_BASE);
             }

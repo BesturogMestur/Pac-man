@@ -2,9 +2,6 @@ package hi.hbv201g.vidmot;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -31,13 +28,16 @@ public class PacmanMaze extends Pane {
     private final int[] MESTA_LEGNT_FRA_UPPHAF = {MAX_ROW,MAX_COL};
     private final int[] BLINKY_HOME = {MAX_ROW, 0};
     private final int[] CLYDE_HOME = {0, MAX_COL};
-    private final double BREID=46.1538;
-    private final double HIGTH =28.5714;
+    protected final double BREID=46.1538;
+    protected final double HIGTH =28.5714;
+    protected final double BERID_VEGGS=47.0;
+    protected final double HAED_VEEGS=31.0;
+    protected final double MID_VEGG_X=BERID_VEGGS/2;
+    protected final double MID_VEGG_Y=HAED_VEEGS/2;
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
-    @FXML
-    Pacman fxPacman;
+    private Pacman fxPacman = new Pacman();
     private Draugar blinky;
     private Draugar inky;
     private Draugar pinky;
@@ -47,7 +47,8 @@ public class PacmanMaze extends Pane {
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
         setMaze();
-        nyrLeikur();
+        setPecman(6,10);
+
     }
 
     private void setMaze() {
@@ -57,30 +58,32 @@ public class PacmanMaze extends Pane {
                     Veggur v = new Veggur();
                     getChildren().add(v);
 
-                    v.setWidth(47.0);
-                    v.setHeight(31.0);
+                    v.setWidth(BERID_VEGGS);
+                    v.setHeight(HAED_VEEGS);
 
-                    v.setX((i*BREID));
-                    v.setY((j* HIGTH));
+                    v.setX(BREID*i);
+                    v.setY(HIGTH*j);
                 }
             }
         }
     }
 
     public void nyrLeikur() {
-        setPecman(6, 10);
+        pellets.removeAll();
+        getChildren().removeAll();
+
+        //setPecman(6, 10);
         timi = TIMAR[havdaTimi];
         setDraugar();
-        //setPellets();
+        setPellets();
 
     }
 
     private void setPecman(int x, int y) {
-        fxPacman = new Pacman();
-
         getChildren().add(fxPacman);
-        fxPacman.setCenterX(BREID*x);
-        fxPacman.setCenterY(HIGTH*y);
+        fxPacman.setCenterX((BREID*x)+MID_VEGG_X);
+        fxPacman.setCenterY((HIGTH*y)+MID_VEGG_Y);
+        System.out.println((fxPacman.getCenterY()-MID_VEGG_Y)/HIGTH);
     }
 
     private void setDraugar() {
@@ -88,8 +91,8 @@ public class PacmanMaze extends Pane {
         blinky.getStyleClass().add("redghost.gif");
         blinky.setFill(Color.rgb(255,0,0));
         getChildren().add(blinky);
-        blinky.setCenterX((BREID)*1);
-        blinky.setCenterY((HIGTH)*1);
+        blinky.setCenterX((BREID*1)+MID_VEGG_X);
+        blinky.setCenterY((HIGTH*1)+MID_VEGG_Y);
 
         inky = new Inky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, MESTA_LEGNT_FRA_UPPHAF, blinky);
         inky.getStyleClass().add("cyan.gif");
@@ -101,19 +104,21 @@ public class PacmanMaze extends Pane {
     }
 
     public void setPellets() {
-        for (int i = 1; i < MAX_COL - 1; i++) {
-            for (int j = 1; j < MAX_ROW - 1; j++) {
+        for (int i = 1; i < MAX_ROW - 1; i++) {
+            for (int j = 1; j < MAX_COL - 1; j++) {
                 if (!((j == 5 || j == 6 || j == 7) && (i == 7 || i == 8))) {
-                    if (maze[i][j]) {
+                    if (maze[j][i]) {
                         Pellets p = new Pellets();
                         pellets.add(p);
+                        p.setCenterX((BREID*j)+MID_VEGG_X);
+                        p.setCenterY((HIGTH*i)+MID_VEGG_Y);
                         getChildren().add(p);
-                        p.setCenterX((BREID/2)*j);
-                        p.setCenterY((HIGTH/2)*i);
+
                     }
                 }
             }
         }
+        System.out.println(pellets.size());
     }
 
     /**
@@ -123,11 +128,12 @@ public class PacmanMaze extends Pane {
      */
     public void setStefna(Double d) {
         fxPacman.setRotate(d);
-        //System.out.println(fxPacman.getRotate());
+        System.out.println(fxPacman.getRotate());
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman.Hnit()));
+        double a = fxPacman.getCenterX();
+        fxPacman.afarm(walls(fxPacman.hnit(this)), this );
     }
 
 
@@ -143,7 +149,7 @@ public class PacmanMaze extends Pane {
     }
 
     private void aframDurgar(Draugar d, PacmanController sc) {
-        int[] a = d.Hnit();
+        int[] a = d.hnit(this);
 
         if (timi <= 0) {
             if (d.elta) {
@@ -159,7 +165,7 @@ public class PacmanMaze extends Pane {
 
 
 
-        d.afarm(walls(d.Hnit()));
+        d.afarm(walls(d.hnit(this)), this);
         athugaPacman(d,sc);
     }
 
