@@ -175,7 +175,7 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     }
 
     @Override
-    public void afarm(boolean[] path, PacmanMaze sc) {
+    public void afarm(boolean[] path, PacmanMaze sc, double s) {
         double bakvid = turnAround();
         double minLend = MAX_LEND;
         double lend;

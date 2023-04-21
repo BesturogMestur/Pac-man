@@ -136,7 +136,7 @@ public class PacmanMaze extends Pane {
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman.hnit(this)), this );
+        fxPacman.afarm(walls(fxPacman.hnit(this)), this , stfna);
     }
 
 
@@ -168,7 +168,7 @@ public class PacmanMaze extends Pane {
 
 
 
-        d.afarm(walls(d.hnit(this)), this);
+        d.afarm(walls(d.hnit(this)), this, stfna);
         athugaPacman(d,sc);
     }
 
