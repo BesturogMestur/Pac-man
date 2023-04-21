@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import hi.hbv201g.vidmot.*?>
-<?import javafx.scene.layout.*?>
+<?import hi.hbv201g.vidmot.Pacman?>
+<?import javafx.scene.layout.Pane?>
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
          prefWidth="600.0" style="-fx-background-color: BLACK;" type="javafx.scene.layout.Pane"
          xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">

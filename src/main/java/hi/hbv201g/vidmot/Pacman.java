@@ -22,20 +22,21 @@ public class Pacman extends Circle implements Afarm, Hnit {
 
     @Override
     public void afarm(boolean[] path, PacmanMaze sc) {
-        double att = getStefna();
+        double att = sc.stfna;
         if (att <= 0) {
             att = 360;
         }
+        System.out.println(getRotate());
         if (path[(int) (att / 90) - 1]) {
 
-            if (getRotate() == 90) {
+            if (sc.stfna == 90) {
                 setCenterY(getCenterY() - sc.BREID);
-            } else if (getRotate() == 180) {
+            } else if (sc.stfna == 180) {
                 setCenterX(getCenterX() - sc.HIGTH);
-            } else if (getRotate() == 270) {
+            } else if (sc.stfna == 270) {
                 setCenterY(getCenterY() + sc.BREID);
             } else {
-                setCenterX(getCenterX() + sc.HIGTH);
+                setCenterX(sc.stfna + sc.HIGTH);
             }
         }
 

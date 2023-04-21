@@ -2,6 +2,7 @@ package hi.hbv201g.vidmot;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -37,7 +38,8 @@ public class PacmanMaze extends Pane {
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
-    private Pacman fxPacman = new Pacman();
+    protected double stfna;
+    private Pacman fxPacman;
     private Draugar blinky;
     private Draugar inky;
     private Draugar pinky;
@@ -47,8 +49,9 @@ public class PacmanMaze extends Pane {
     public PacmanMaze() {
         FXMLLoder loader = new FXMLLoder(this, "PacmanMaze.fxml");
         setMaze();
+        fxPacman = new Pacman();
         setPecman(6,10);
-
+        stfna=0.0;
     }
 
     private void setMaze() {
@@ -128,11 +131,11 @@ public class PacmanMaze extends Pane {
      */
     public void setStefna(Double d) {
         fxPacman.setRotate(d);
+        stfna = d;
         System.out.println(fxPacman.getRotate());
     }
 
     public void pacmanAfram() {
-        double a = fxPacman.getCenterX();
         fxPacman.afarm(walls(fxPacman.hnit(this)), this );
     }
 
