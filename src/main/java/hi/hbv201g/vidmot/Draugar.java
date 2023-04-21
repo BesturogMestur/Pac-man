@@ -114,7 +114,17 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public int[] hnit(PacmanMaze sc) {
         int[] a = new int[2];
         a[0] = (int) ((getCenterX() - sc.MID_VEGG_X) / sc.BREID);
-        a[1] = (int) ((getCenterY() - sc.MID_VEGG_Y) / sc.BREID);
+        if (a[0]==0){
+            a[0]=1;
+        }
+        a[1] = (int) ((getCenterY() - sc.MID_VEGG_Y) / sc.HIGTH);
+        if(a[1]==0){
+            a[1]=1;
+        }else if(a[1]==1){
+            a[1]=2;
+        }else if(a[1]==2){
+            a[1]=3;
+        }
         return a;
     }
 
@@ -148,15 +158,15 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
     public int[] piontOfColuslson(int[] a, int i, PacmanMaze sc) {
         if (i % 2 == 0) {
             if (i == 0) {
-                a[1] -= sc.MID_VEGG_Y;
+                a[1] -= 1;
             } else {
-                a[1] += sc.MID_VEGG_Y;
+                a[1] += 1;
             }
         } else {
             if (i > 1) {
-                a[0] -= sc.MID_VEGG_X;
+                a[0] -= 1;
             } else {
-                a[0] += sc.MID_VEGG_X;
+                a[0] +=1;
             }
         }
         return a;
@@ -164,18 +174,18 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
 
     private void direson(PacmanMaze sc) {
         if (getRotate() == 90) {
-            setCenterY(getCenterY() - sc.MID_VEGG_Y);
+            setCenterY(getCenterY() - sc.HIGTH);
         } else if (getRotate() == 180) {
-            setCenterX(getCenterX() - sc.MID_VEGG_X);
+            setCenterX(getCenterX() - sc.BREID);
         } else if (getRotate() == 270) {
-            setCenterY(getCenterY() + sc.MID_VEGG_Y);
+            setCenterY(getCenterY() + sc.HIGTH);
         } else {
-            setCenterX(getCenterX() + sc.MID_VEGG_X);
+            setCenterX(getCenterX() + sc.BREID);
         }
     }
 
     @Override
-    public void afarm(boolean[] path, PacmanMaze sc, double s) {
+    public void afarm(boolean[] path, PacmanMaze sc) {
         double bakvid = turnAround();
         double minLend = MAX_LEND;
         double lend;
@@ -210,6 +220,8 @@ public abstract class Draugar extends Circle implements Afarm, Hnit {
             }
             direson(sc);
         }
+        int[] a = hnit(sc);
+        System.out.println(a[0]+" "+a[1]);
     }
 }
 

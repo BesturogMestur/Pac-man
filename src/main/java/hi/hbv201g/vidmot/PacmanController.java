@@ -37,9 +37,9 @@ public class PacmanController {
     public void byrjaLeik() {
         KeyFrame k = new KeyFrame(Duration.millis(100.0),
                 e -> {
-                    //maze.pacmanAfram();
+                    maze.pacmanAfram();
                     //maze.bordaPellets(this);
-                    //maze.aframDraugar(this);
+                    maze.aframDraugar(this);
 
                 });
         timeline = new Timeline(k);
@@ -58,7 +58,7 @@ public class PacmanController {
         fxStig.getScene().addEventFilter(KeyEvent.ANY, event -> {
             try {
                 this.setStefna(map.get(event.getCode()).getGradur());
-                this.maze.pacmanAfram();
+                //this.maze.pacmanAfram();
             } catch (NullPointerException e) {
                 event.consume();
             }

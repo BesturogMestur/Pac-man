@@ -2,7 +2,6 @@ package hi.hbv201g.vidmot;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -38,7 +37,6 @@ public class PacmanMaze extends Pane {
     private final int[] TIMAR = {10, 8, 10, 2};
     private int havdaTimi = 0;
     private int timi;
-    protected double stfna;
     private Pacman fxPacman;
     private Draugar blinky;
     private Draugar inky;
@@ -51,7 +49,7 @@ public class PacmanMaze extends Pane {
         setMaze();
         fxPacman = new Pacman();
         setPecman(6,10);
-        stfna=0.0;
+        nyrLeikur();
     }
 
     private void setMaze() {
@@ -94,8 +92,8 @@ public class PacmanMaze extends Pane {
         blinky.getStyleClass().add("redghost.gif");
         blinky.setFill(Color.rgb(255,0,0));
         getChildren().add(blinky);
-        blinky.setCenterX((BREID*1)+MID_VEGG_X);
-        blinky.setCenterY((HIGTH*1)+MID_VEGG_Y);
+        blinky.setCenterX((BREID*6)+MID_VEGG_X);
+        blinky.setCenterY((HIGTH*2)+MID_VEGG_Y);
 
         inky = new Inky(fxPacman, UPPHAFS_PUNKTUR, MESTA_LEGNT_FRA_UPPHAF, HOME, MESTA_LEGNT_FRA_UPPHAF, blinky);
         inky.getStyleClass().add("cyan.gif");
@@ -131,21 +129,20 @@ public class PacmanMaze extends Pane {
      */
     public void setStefna(Double d) {
         fxPacman.setRotate(d);
-        stfna = d;
         System.out.println(fxPacman.getRotate());
     }
 
     public void pacmanAfram() {
-        fxPacman.afarm(walls(fxPacman.hnit(this)), this , stfna);
+        fxPacman.afarm(walls(fxPacman.hnit(this)), this);
     }
 
 
 
     public void aframDraugar(PacmanController sc) {
         aframDurgar(blinky, sc);
-        aframDurgar(inky, sc);
-        aframDurgar(pinky, sc);
-        aframDurgar(clyde, sc);
+        //aframDurgar(inky, sc);
+        //aframDurgar(pinky, sc);
+        //aframDurgar(clyde, sc);
         if (timi <= 0) {
             uppfraeraTima();
         }
@@ -161,14 +158,14 @@ public class PacmanMaze extends Pane {
                 d.setElta(true);
             }
         }
-        if (a[0] == 6 && a[1] == 5) {
+        if (a[0] == 6 && a[1] == 5 && d.etan) {
             d.setEtan(false);
             d.setRotate(90);
         }
 
 
 
-        d.afarm(walls(d.hnit(this)), this, stfna);
+        d.afarm(walls(d.hnit(this)), this);
         athugaPacman(d,sc);
     }
 
